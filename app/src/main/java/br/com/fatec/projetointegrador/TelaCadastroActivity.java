@@ -11,18 +11,19 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class MainActivity extends AppCompatActivity {
+public class TelaCadastroActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
-        TextView btn=findViewById(R.id.btnCadastrese);
+        setContentView(R.layout.tela_cadastro);
+
+        TextView btn = findViewById(R.id.btnLogar);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,TelaCadastroActivity.class));
+                startActivity(new Intent(TelaCadastroActivity.this, MainActivity.class));
             }
         });
     }

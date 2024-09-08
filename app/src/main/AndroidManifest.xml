@@ -13,6 +13,12 @@
         android:theme="@style/Theme.ProjetoIntegrador"
         tools:targetApi="31">
         <activity
+            android:name=".TelaConsultaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".tela_consulta"
+            android:exported="false" />
+        <activity
             android:name=".TelaAgendarActivity"
             android:exported="false" />
         <activity

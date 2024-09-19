@@ -21,4 +21,5 @@ public class TelaConsultaActivity extends AppCompatActivity {
             return insets;
         });
     }
+
 }

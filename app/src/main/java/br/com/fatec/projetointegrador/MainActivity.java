@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText editTextTextEmailAddress2;
     private EditText editTextTextPassword;
     private Button btnEntrar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,27 +36,22 @@ public class MainActivity extends AppCompatActivity {
             String usuarioInput = editTextTextEmailAddress2.getText().toString();
             String senhaInput = editTextTextPassword.getText().toString();
 
-            if (usuarioInput.equals("admin") && senhaInput.equals("admin")){
+            if (usuarioInput.equals("admin") && senhaInput.equals("admin")) {
                 Intent intent = new Intent(this, Home.class);
                 startActivity(intent);
-            }else {
-                TextView textoRetorno = findViewById(R.id.textView4);
-                textoRetorno.setText("Usuário não encontrado!");
-
-                /*
-                Intent intent = new Intent(this, TelaCadastroActivity.class);
-                startActivity(intent);
-
-                 */
+            } else {
+                Toast.makeText(
+                        MainActivity.this, "Usuário ou senha incorretos",
+                                Toast.LENGTH_SHORT
+                ).show();
             }
         });
 
-
-        TextView btn=findViewById(R.id.btnCadastrese);
+        TextView btn = findViewById(R.id.btnCadastrese);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,TelaCadastroActivity.class));
+                startActivity(new Intent(MainActivity.this, TelaCadastroActivity.class));
             }
         });
     }

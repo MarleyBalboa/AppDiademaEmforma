@@ -8,8 +8,11 @@
     android:layout_height="match_parent"
     tools:context=".Home">
 
+
+    <!--Texto do Titulo -->
+
     <TextView
-        android:id="@+id/home"
+        android:id="@+id/txtTitulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="DiademaEmForma"
@@ -18,17 +21,21 @@
         android:textColor="@color/laranja"
         android:layout_margin="12dp"/>
 
+    <!--Botões do grid-->
+
     <GridLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/home"
+        android:layout_below="@+id/txtTitulo"
         android:layout_marginTop="20dp"
         android:layout_margin="20dp"
         android:columnCount="2"
         android:rowCount="3">
 
+        <!--Carde 1 - Inicio -->
+
         <androidx.cardview.widget.CardView
-            android:id="@+id/cardHome"
+            android:id="@+id/cardInicio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_row="0"
@@ -56,11 +63,13 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="HOME"
+                    android:text="INICIO"
                     android:textSize="16sp" />
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
+
+        <!--Carde 2 - Pesquisar -->
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardPesquisar"
@@ -97,6 +106,8 @@
 
         </androidx.cardview.widget.CardView>
 
+        <!--Carde 3 - Agendar -->
+
         <androidx.cardview.widget.CardView
             android:id="@+id/cardAgendar"
             android:layout_width="wrap_content"
@@ -131,6 +142,8 @@
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
+
+        <!--Carde 4 - Favoritos -->
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardFavorito"
@@ -167,6 +180,7 @@
 
         </androidx.cardview.widget.CardView>
 
+        <!--Carde 5 - Mensagem -->
         <androidx.cardview.widget.CardView
             android:id="@+id/cardMensagem"
             android:layout_width="wrap_content"
@@ -201,6 +215,8 @@
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
+
+        <!--Carde 6 - Perfil -->
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardPerfil"
@@ -237,9 +253,6 @@
 
         </androidx.cardview.widget.CardView>
 
-
-
     </GridLayout>
-
 
 </RelativeLayout>

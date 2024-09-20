@@ -4,12 +4,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 public class Home extends AppCompatActivity {
 
@@ -27,7 +23,7 @@ public class Home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        cardHome = findViewById(R.id.cardHome);
+        cardHome = findViewById(R.id.cardInicio);
         cardPesquisar = findViewById(R.id.cardPesquisar);
         cardAgendar = findViewById(R.id.cardAgendar);
         cardFavorito = findViewById(R.id.cardFavorito);

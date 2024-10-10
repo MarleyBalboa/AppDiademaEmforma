@@ -1,5 +1,6 @@
 package br.com.fatec.projetointegrador;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -63,7 +64,7 @@ public class Home extends AppCompatActivity {
         cardPerfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showToast("Perfil foi clicado");
+                startActivity(new Intent(Home.this, TelaPerfil.class));
             }
         });
     };

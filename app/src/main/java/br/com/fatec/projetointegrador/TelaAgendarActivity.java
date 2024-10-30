@@ -1,6 +1,9 @@
 package br.com.fatec.projetointegrador;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,19 +11,29 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class
+public class TelaAgendarActivity extends AppCompatActivity {
 
-TelaDeBusca extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_tela_de_busca);
+        setContentView(R.layout.activity_main);
+
+        // Ajustando a margem para suportar o sistema de barras
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
+        });
+
+        // Referenciando o texto "Consultar Aulas"
+        TextView btnConsulta = findViewById(R.id.btnConsulta);
+
+        // Configurando o clique no texto "Consultar Aulas"
+        btnConsulta.setOnClickListener(v -> {
+            // Iniciando a atividade TelaConsultaActivity
+            startActivity(new Intent(TelaAgendarActivity.this, TelaConsultaActivity.class));
         });
     }
 }

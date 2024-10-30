@@ -9,26 +9,78 @@
     tools:context=".Home">
 
 
-    <!--Texto do Titulo -->
-
-    <TextView
-        android:id="@+id/txtTitulo"
-        android:layout_width="wrap_content"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardSuperior"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="DiademaEmForma"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        android:textColor="@color/laranja"
-        android:layout_margin="12dp"/>
+        android:layout_margin="12dp"
+        android:backgroundTint="@color/laranja"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="134dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="16dp">
+
+            <!-- Imagem redonda -->
+            <ImageView
+                android:id="@+id/imagePerfil"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/circle_background"
+                android:scaleType="centerCrop"
+                android:src="@drawable/chapo" />
+
+            <!-- Texto ao lado -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Chapolin Colorado"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nascimento: 30/10/2024"
+                    android:textColor="@android:color/white" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sexo: Masculino"
+                    android:textColor="@android:color/white" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="SIGA-ME OS BONS"
+                    android:textColor="@android:color/white" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
 
     <!--Botões do grid-->
 
     <GridLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/txtTitulo"
+        android:layout_below="@+id/cardSuperior"
         android:layout_marginTop="20dp"
-        android:layout_margin="20dp"
+        android:layout_margin="10dp"
         android:columnCount="2"
         android:rowCount="3">
 

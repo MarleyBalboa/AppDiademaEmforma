@@ -24,25 +24,12 @@ public class Home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        cardHome = findViewById(R.id.cardInicio);
-        cardPesquisar = findViewById(R.id.cardPesquisar);
         cardAgendar = findViewById(R.id.cardAgendar);
         cardFavorito = findViewById(R.id.cardFavorito);
         cardMensagem = findViewById(R.id.cardMensagem);
         cardPerfil = findViewById(R.id.cardPerfil);
 
-        cardHome.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showToast("Home foi clicado");
-            }
-        });
-        cardPesquisar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showToast("Pesquisar clicado");
-            }
-        });
+
         cardAgendar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

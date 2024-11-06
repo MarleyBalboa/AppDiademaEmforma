@@ -39,19 +39,20 @@
         app:layout_constraintVertical_bias="0.20" />
 
     <!--Campo de entrada para Data -->
-    <EditText        android:id="@+id/data1"
+    <EditText
+        android:id="@+id/data1"
         android:layout_width="0dp"
         android:layout_height="45dp"
         android:layout_marginStart="45dp"
         android:layout_marginEnd="45dp"
         android:background="@color/laranjaClaro"
         android:ems="10"
-        android:inputType="text"
+        android:inputType="date"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.27" />
+        app:layout_constraintVertical_bias="0.269" />
 
     <!--Texto Horário -->
     <TextView
@@ -69,19 +70,20 @@
 
     <!--Campo de entrada para Horário -->
     <EditText
-        android:id="@+id/edithorario"
+        android:id="@+id/editHorario"
         android:layout_width="0dp"
         android:layout_height="45dp"
         android:layout_marginStart="45dp"
         android:layout_marginEnd="45dp"
         android:background="@color/laranjaClaro"
         android:ems="10"
-        android:inputType="text"
+        android:inputType="time"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.436" />
+        app:layout_constraintVertical_bias="0.435" />
 
     <!--Texto Local -->
     <TextView
@@ -99,7 +101,7 @@
 
     <!--Campo de entrada para Local -->
     <EditText
-        android:id="@+id/editlocal"
+        android:id="@+id/editLocal"
         android:layout_width="0dp"
         android:layout_height="45dp"
         android:layout_marginStart="45dp"
@@ -115,7 +117,7 @@
 
     <!--Botão Entrar -->
     <Button
-        android:id="@+id/button_Agendar"
+        android:id="@+id/btnAgendar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="45dp"
@@ -157,5 +159,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.78" />
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -33,7 +33,7 @@ public class Home extends AppCompatActivity {
         cardAgendar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showToast("Agendar foi clicado");
+                startActivity(new Intent(Home.this, TelaAgendarActivity.class));
             }
         });
         cardFavorito.setOnClickListener(new View.OnClickListener() {

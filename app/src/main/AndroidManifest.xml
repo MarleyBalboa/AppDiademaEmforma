@@ -16,7 +16,7 @@
             android:name=".TelaConsultaActivity"
             android:exported="false" />
         <activity
-            android:name=".TelaAgendar"
+            android:name=".TelaAgendarActivity"
             android:exported="false" />
         <activity
             android:name=".TelaPerfil"

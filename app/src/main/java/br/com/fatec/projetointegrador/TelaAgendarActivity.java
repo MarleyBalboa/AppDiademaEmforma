@@ -3,36 +3,27 @@ package br.com.fatec.projetointegrador;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 public class TelaAgendarActivity extends AppCompatActivity {
 
+    private Button btnAgendar;  // Adiciona uma variável para o botão
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_tela_agendar); // Certifique-se de que está usando o layout correto
 
-        // Ajustando a margem para suportar o sistema de barras
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+        // Inicializando o botão btnAgendar
+        btnAgendar = findViewById(R.id.btnAgendar);
 
-        // Referenciando o texto "Consultar Aulas"
-        TextView btnConsulta = findViewById(R.id.btnConsulta);
-
-        // Configurando o clique no texto "Consultar Aulas"
-        btnConsulta.setOnClickListener(v -> {
-            // Iniciando a atividade TelaConsultaActivity
+        // Configurando o clique no botão "Agendar"
+        btnAgendar.setOnClickListener(v -> {
+            // Ao clicar no botão, redireciona para TelaConsultaActivity
             startActivity(new Intent(TelaAgendarActivity.this, TelaConsultaActivity.class));
         });
     }

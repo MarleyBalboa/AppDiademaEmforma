@@ -1,12 +1,17 @@
 package br.com.fatec.projetointegrador;
 
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.widget.CompositePageTransformer;
+import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
 import java.util.ArrayList;
@@ -51,6 +56,23 @@ public class TelaBuscaParques extends AppCompatActivity {
 
         // Configuração do Adapter
         locationsViewPager.setAdapter(new TelaCardLocalizacaoAdapter(telaCardLocalizacaos));
+
+        locationsViewPager.setClipToPadding(false);
+        locationsViewPager.setClipChildren(false);
+        locationsViewPager.setOffscreenPageLimit(3);
+        locationsViewPager.getChildAt(0).setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
+
+        CompositePageTransformer compositePageTransformer = new CompositePageTransformer();
+        compositePageTransformer.addTransformer(new MarginPageTransformer(40));
+        compositePageTransformer.addTransformer(new ViewPager2.PageTransformer() {
+            @Override
+            public void transformPage(@NonNull View page, float position) {
+                float r = 1 - Math.abs(position);
+                page.setScaleY(0.95f + r * 0.05f);
+            }
+        });
+
+        locationsViewPager.setPageTransformer(compositePageTransformer);
 
         // Habilitar navegação de borda a borda
         EdgeToEdge.enable(this);

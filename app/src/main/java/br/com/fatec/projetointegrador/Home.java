@@ -10,11 +10,9 @@ import androidx.cardview.widget.CardView;
 
 public class Home extends AppCompatActivity {
 
-    CardView cardHome;
-    CardView cardPesquisar;
     CardView cardAgendar;
-    CardView cardFavorito;
-    CardView cardMensagem;
+    CardView cardAcademias;
+    CardView cardParques;
     CardView cardPerfil;
 
 
@@ -25,8 +23,8 @@ public class Home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         cardAgendar = findViewById(R.id.cardAgendar);
-        cardFavorito = findViewById(R.id.cardFavorito);
-        cardMensagem = findViewById(R.id.cardMensagem);
+        cardAcademias = findViewById(R.id.cardFavorito);
+        cardParques = findViewById(R.id.cardMensagem);
         cardPerfil = findViewById(R.id.cardPerfil);
 
 
@@ -36,16 +34,16 @@ public class Home extends AppCompatActivity {
                 startActivity(new Intent(Home.this, TelaAgendarActivity.class));
             }
         });
-        cardFavorito.setOnClickListener(new View.OnClickListener() {
+        cardAcademias.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showToast("Favorito foi clicado");
+                startActivity(new Intent(Home.this, TelaDeBusca.class));
             }
         });
-        cardMensagem.setOnClickListener(new View.OnClickListener() {
+        cardParques.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showToast("Mensagem foi clicado");
+                startActivity(new Intent(Home.this, TelaBuscaParques.class));
             }
         });
         cardPerfil.setOnClickListener(new View.OnClickListener() {

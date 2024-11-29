@@ -72,7 +72,7 @@
                     android:layout_marginEnd="20dp"
                     android:background="@drawable/circle_background"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/chapo" />
+                    android:src="@drawable/profile_icon" />
 
                 <!-- Texto ao lado -->
                 <LinearLayout
@@ -84,14 +84,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Chapolin Colorado"
+                        android:text="Valdomiro Ramalho"
                         android:textColor="@color/black"
                         android:textSize="20sp"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Nascimento: 30/10/2024"
+                        android:text="Nascimento: 30/10/1988"
                         android:textColor="@color/black" />
 
                     <TextView
@@ -100,11 +100,6 @@
                         android:text="Sexo: Masculino"
                         android:textColor="@color/black" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="SIGA-ME OS BONS"
-                        android:textColor="@color/black" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -135,7 +130,7 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardAgendar"
-                android:layout_width="wrap_content"
+                android:layout_width="110dp"
                 android:layout_height="180dp"
                 android:layout_row="1"
                 android:layout_rowWeight="1"
@@ -194,12 +189,12 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/favorito" />
+                        android:src="@drawable/baseline_fitness_center_24" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="FAVORITO"
+                        android:text="ACADEMIAS"
                         android:textSize="16sp" />
                 </LinearLayout>
 
@@ -230,12 +225,12 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/mensagem" />
+                        android:src="@drawable/baseline_forest_24" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="MENSAGEM"
+                        android:text="PARQUES"
                         android:textSize="16sp" />
                 </LinearLayout>
 

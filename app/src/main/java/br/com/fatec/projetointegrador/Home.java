@@ -37,7 +37,7 @@ public class Home extends AppCompatActivity {
         cardAcademias.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Home.this, TelaDeBusca.class));
+                startActivity(new Intent(Home.this, TelaBuscaAcademias.class));
             }
         });
         cardParques.setOnClickListener(new View.OnClickListener() {

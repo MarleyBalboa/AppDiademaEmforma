@@ -130,7 +130,7 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardAgendar"
-                android:layout_width="110dp"
+                android:layout_width="109dp"
                 android:layout_height="180dp"
                 android:layout_row="1"
                 android:layout_rowWeight="1"
@@ -167,7 +167,7 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardFavorito"
-                android:layout_width="wrap_content"
+                android:layout_width="110dp"
                 android:layout_height="180dp"
                 android:layout_row="1"
                 android:layout_rowWeight="1"

@@ -17,14 +17,14 @@ import androidx.viewpager2.widget.ViewPager2;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TelaBuscaParques extends AppCompatActivity {
+public class TelaBuscaAcademias extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         // Configuração do layout antes de acessar componentes
-        setContentView(R.layout.activity_tela_busca_parques);
+        setContentView(R.layout.activity_tela_busca_academias);
 
         // Depois de chamar setContentView, acesse os componentes da UI
         ViewPager2 locationsViewPager = findViewById(R.id.locationsViewPager2);
@@ -33,26 +33,33 @@ public class TelaBuscaParques extends AppCompatActivity {
         List<TelaCardLocalizacao> telaCardLocalizacaos = new ArrayList<>();
 
         // Adicionando as localizações à lista
-        TelaCardLocalizacao localizacaoParque1 = new TelaCardLocalizacao();
-        localizacaoParque1.imageUrl = "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0c/64/f1/86/parque-do-paco-diadema.jpg?w=900&h=-1&s=1";
-        localizacaoParque1.title = "Parque do Paço";
-        localizacaoParque1.location = "Av. Antônio Piranga, 1380";
-        localizacaoParque1.starRating = 4.3f;
-        telaCardLocalizacaos.add(localizacaoParque1);
+        TelaCardLocalizacao localizacaoAcademia1 = new TelaCardLocalizacao();
+        localizacaoAcademia1.imageUrl = "https://static.wixstatic.com/media/a22bf1_8b3d6c83c93140f2879d758ebe1fcf38~mv2.jpg/v1/fill/w_602,h_600,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/241BC8F8-EFF7-49BD-A4F5-44F86BFFFD0B.jpg";
+        localizacaoAcademia1.title = "Villa Fitness";
+        localizacaoAcademia1.location = "R. Antônio Dias Adorno, 250";
+        localizacaoAcademia1.starRating = 4.7f;
+        telaCardLocalizacaos.add(localizacaoAcademia1);
 
-        TelaCardLocalizacao localizacaoParque2 = new TelaCardLocalizacao();
-        localizacaoParque2.imageUrl = "https://refugiosnointerior.com.br/sistema/_lib/file/img/lugar/975/eldodestaque.webp";
-        localizacaoParque2.title = "Parque do Eldorado";
-        localizacaoParque2.location = "Av. Nossa Sra. dos Navegantes, 145";
-        localizacaoParque2.starRating = 3.9f;
-        telaCardLocalizacaos.add(localizacaoParque2);
+        TelaCardLocalizacao localizacaoAcademia2 = new TelaCardLocalizacao();
+        localizacaoAcademia2.imageUrl = "https://images2.nogueirense.com.br/wp-content/uploads/2019/02/img_1154-1550498617.jpg";
+        localizacaoAcademia2.title = "Panobianco Diadema";
+        localizacaoAcademia2.location = "Av. Pres. Kennedy, 488";
+        localizacaoAcademia2.starRating = 4.1f;
+        telaCardLocalizacaos.add(localizacaoAcademia2);
 
-        TelaCardLocalizacao localizacaoParque3 = new TelaCardLocalizacao();
-        localizacaoParque3.imageUrl = "https://lh3.googleusercontent.com/p/AF1QipPYAFVdX0dHExe1uepOcrKmOQH8wuRhMT5s3Fnt=s680-w680-h510";
-        localizacaoParque3.title = "Parque Takebe";
-        localizacaoParque3.location = "R. Yokohama, 118";
-        localizacaoParque3.starRating = 4.3f;
-        telaCardLocalizacaos.add(localizacaoParque3);
+        TelaCardLocalizacao localizacaoAcademia3 = new TelaCardLocalizacao();
+        localizacaoAcademia3.imageUrl = "https://pictures.smartfit.com.br/9321/big/1.jpg?1653331525";
+        localizacaoAcademia3.title = "Smart Fit Diadema";
+        localizacaoAcademia3.location = "Avenida Nossa Senhora das Vitórias, 188";
+        localizacaoAcademia3.starRating = 4.4f;
+        telaCardLocalizacaos.add(localizacaoAcademia3);
+
+        TelaCardLocalizacao localizacaoAcademia4 = new TelaCardLocalizacao();
+        localizacaoAcademia4.imageUrl = "https://cdn.prod.website-files.com/64dd05b33f019f79a7ec8f43/666300e6dec162f1e78c46d0_bluefit-1717764296305.jpeg";
+        localizacaoAcademia4.title = "Bluefit Diadema";
+        localizacaoAcademia4.location = "Av. Sete de Setembro, 97";
+        localizacaoAcademia4.starRating = 4.7f;
+        telaCardLocalizacaos.add(localizacaoAcademia4);
 
         // Configuração do Adapter
         locationsViewPager.setAdapter(new TelaCardLocalizacaoAdapter(telaCardLocalizacaos));

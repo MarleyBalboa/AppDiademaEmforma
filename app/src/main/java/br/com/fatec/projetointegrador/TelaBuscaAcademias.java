@@ -1,11 +1,15 @@
 package br.com.fatec.projetointegrador;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -25,6 +29,24 @@ public class TelaBuscaAcademias extends AppCompatActivity {
 
         // Configuração do layout antes de acessar componentes
         setContentView(R.layout.activity_tela_busca_academias);
+
+        LinearLayout layoutCardAgendar = findViewById(R.id.layoutCardAcadAgendar);
+        LinearLayout layoutCardLocal = findViewById(R.id.layoutCardAcadLocal);
+        LinearLayout layoutCardProf = findViewById(R.id.layoutCardAcadProf);
+        LinearLayout layoutCardOutro = findViewById(R.id.layoutCardAcadOutro);
+
+        layoutCardAgendar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(TelaBuscaAcademias.this, TelaAgendarActivity.class));
+            }
+        });
+        layoutCardLocal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(TelaBuscaAcademias.this, GMapActivity.class));
+            }
+        });
 
         // Depois de chamar setContentView, acesse os componentes da UI
         ViewPager2 locationsViewPager = findViewById(R.id.locationsViewPager2);

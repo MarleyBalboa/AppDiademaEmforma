@@ -18,11 +18,20 @@
         android:theme="@style/Theme.ProjetoIntegrador"
         tools:targetApi="31">
         <activity
+            android:name=".TelaInicioBemVindo"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".GMapActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".TelaBuscaAcademias"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".TelaBuscaParques"
             android:exported="false" />
@@ -40,21 +49,16 @@
             android:exported="false" />
         <activity
             android:name=".TelaCadastroActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize"/>
         <activity
             android:name=".MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize"/>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyC40xobIwRisJ3d3gn5iSCvAopG_1hN-S0"/>
-
+            android:value="AIzaSyC40xobIwRisJ3d3gn5iSCvAopG_1hN-S0" />
     </application>
 
 </manifest>

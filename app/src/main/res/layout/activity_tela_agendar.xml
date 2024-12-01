@@ -1,166 +1,173 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/scrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:fitsSystemWindows="true"
     tools:context=".MainActivity">
 
-    <!--Texto título -->
-    <TextView
-        android:id="@+id/Consultaraula"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Agendar Aula"
-        android:textAlignment="center"
-        android:textStyle="bold"
-        android:textSize="30dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.1" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <!--Texto Data -->
-    <TextView
-        android:id="@+id/Data"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Data"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.20" />
 
-    <!--Campo de entrada para Data -->
-    <EditText
-        android:id="@+id/data1"
-        android:layout_width="0dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="45dp"
-        android:layout_marginEnd="45dp"
-        android:background="@color/laranjaClaro"
-        android:ems="10"
-        android:inputType="date"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.269" />
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:text="AGENDAR"
+            android:textAlignment="center"
+            android:textSize="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <!--Texto Horário -->
-    <TextView
-        android:id="@+id/Horario"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Horário"
-        android:textStyle="bold"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.367" />
+        <TextView
+            android:id="@+id/id_data"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:text="Data"
+            android:textSize="18dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-    <!--Campo de entrada para Horário -->
-    <EditText
-        android:id="@+id/editHorario"
-        android:layout_width="0dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="45dp"
-        android:layout_marginEnd="45dp"
-        android:background="@color/laranjaClaro"
-        android:ems="10"
-        android:inputType="time"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.435" />
+        <TextView
+            android:id="@+id/id_horario"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="32dp"
+            android:text="Horário"
+            android:textSize="18dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.094"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/data_aula" />
 
-    <!--Texto Local -->
-    <TextView
-        android:id="@+id/Local"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Local"
-        android:textStyle="bold"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.506" />
+        <TextView
+            android:id="@+id/id_local"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="32dp"
+            android:text="Local"
+            android:textSize="18dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/horario_aula" />
 
-    <!--Campo de entrada para Local -->
-    <EditText
-        android:id="@+id/editLocal"
-        android:layout_width="0dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="45dp"
-        android:layout_marginEnd="45dp"
-        android:background="@color/laranjaClaro"
-        android:ems="10"
-        android:inputType="text"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.575" />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnAgendar"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="42dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/btn_fundo_bemvindo"
+            android:text="CADASTRAR"
+            android:textColor="#FFA500"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/local_aula" />
 
-    <!--Botão Entrar -->
-    <Button
-        android:id="@+id/btnAgendar"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="45dp"
-        android:layout_marginEnd="45dp"
-        android:backgroundTint="@color/laranja"
-        android:text="Agendar"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.66" />
-
-    <!--Texto para criar conta -->
-    <TextView
-        android:id="@+id/textconsulta"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Quer consultar suas aulas agendadas?"
-        android:textAlignment="center"
-        android:textSize="15dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.74" />
-
-    <TextView
-        android:id="@+id/btnConsulta"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="btnConsulta"
-        android:text="Consultar Aulas"
-        android:textColor="@color/laranja"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.78" />
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/data_aula"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/caixatexto_fundo"
+            android:ems="10"
+            android:hint="Data (dd/mm/aa)"
+            android:textSize="17dp"
+            android:inputType="none"
+            android:padding="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/id_data" />
 
 
 
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/horario_aula"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/caixatexto_fundo"
+            android:ems="10"
+            android:hint="Horário (entre 9h às 18h)"
+            android:textSize="16dp"
+            android:inputType="time"
+            android:padding="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/id_horario" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/local_aula"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/caixatexto_fundo"
+            android:ems="10"
+            android:hint="Endereço do estabelecimento"
+            android:textSize="16dp"
+            android:inputType="text"
+            android:padding="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/id_local" />
+
+        <!--Texto para criar conta -->
+
+        <TextView
+            android:id="@+id/textconsulta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:text="Quer consultar suas aulas agendadas?"
+            android:textAlignment="center"
+            android:textSize="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.349"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnAgendar" />
+
+        <TextView
+            android:id="@+id/btnConsulta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:onClick="btnConsulta"
+            android:text="Consultar aulas"
+            android:textColor="@color/laranja"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textconsulta"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>

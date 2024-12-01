@@ -23,8 +23,8 @@ public class Home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         cardAgendar = findViewById(R.id.cardAgendar);
-        cardAcademias = findViewById(R.id.cardFavorito);
-        cardParques = findViewById(R.id.cardMensagem);
+        cardAcademias = findViewById(R.id.cardAcademias);
+        cardParques = findViewById(R.id.cardParques);
         cardPerfil = findViewById(R.id.cardPerfil);
 
 

@@ -1,7 +1,9 @@
 package br.com.fatec.projetointegrador;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -25,6 +27,24 @@ public class TelaBuscaParques extends AppCompatActivity {
 
         // Configuração do layout antes de acessar componentes
         setContentView(R.layout.activity_tela_busca_parques);
+
+        LinearLayout layoutCardAgendar = findViewById(R.id.layoutCardParkAgendar);
+        LinearLayout layoutCardLocal = findViewById(R.id.layoutCardParkLocal);
+        LinearLayout layoutCardProf = findViewById(R.id.layoutCardParkProf);
+        LinearLayout layoutCardOutro = findViewById(R.id.layoutCardParkOutro);
+
+        layoutCardAgendar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(TelaBuscaParques.this, TelaAgendarActivity.class));
+            }
+        });
+        layoutCardLocal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(TelaBuscaParques.this, GMapParquesActivity.class));
+            }
+        });
 
         // Depois de chamar setContentView, acesse os componentes da UI
         ViewPager2 locationsViewPager = findViewById(R.id.locationsViewPager2);
@@ -53,6 +73,13 @@ public class TelaBuscaParques extends AppCompatActivity {
         localizacaoParque3.location = "R. Yokohama, 118";
         localizacaoParque3.starRating = 4.3f;
         telaCardLocalizacaos.add(localizacaoParque3);
+
+        TelaCardLocalizacao localizacaoParque4 = new TelaCardLocalizacao();
+        localizacaoParque4.imageUrl = "https://lh3.googleusercontent.com/p/AF1QipO0KWVkZ9Eoo5uHMFy09FVvgnmN2_ecFCUROvsH=s680-w680-h510";
+        localizacaoParque4.title = "Parque Regional Oeste";
+        localizacaoParque4.location = "R. Érico Veríssimo, 311";
+        localizacaoParque4.starRating = 4.5f;
+        telaCardLocalizacaos.add(localizacaoParque4);
 
         // Configuração do Adapter
         locationsViewPager.setAdapter(new TelaCardLocalizacaoAdapter(telaCardLocalizacaos));

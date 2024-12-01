@@ -76,7 +76,7 @@
             android:layout_marginTop="42dp"
             android:layout_marginEnd="32dp"
             android:background="@drawable/btn_fundo_bemvindo"
-            android:text="CADASTRAR"
+            android:text="AGENDAR"
             android:textColor="#FFA500"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"

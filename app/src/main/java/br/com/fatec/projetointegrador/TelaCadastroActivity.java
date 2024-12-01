@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ScrollView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,6 +17,7 @@ public class TelaCadastroActivity extends AppCompatActivity {
     private AppCompatButton registerButton;
     private DatabaseHelper databaseHelper;
     private ScrollView scrollView;
+    TextView btnLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +32,12 @@ public class TelaCadastroActivity extends AppCompatActivity {
         passwordInput = findViewById(R.id.editTextTextPassword2);
         confirmPasswordInput = findViewById(R.id.editTextTextPassword3);
         registerButton = findViewById(R.id.btnRegistrar);
+        btnLogin = findViewById(R.id.btnLogin);
+
+        btnLogin.setOnClickListener(v -> {
+            // Ao clicar no botão, redireciona para TelaConsultaActivity
+            startActivity(new Intent(TelaCadastroActivity.this, MainActivity.class));
+        });
 
         // Inicializa o banco de dados
         databaseHelper = new DatabaseHelper(this);

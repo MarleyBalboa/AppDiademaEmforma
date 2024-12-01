@@ -14,14 +14,14 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class GMapActivity extends AppCompatActivity implements OnMapReadyCallback {
+public class GMapParquesActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap gMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_gmap);
+        setContentView(R.layout.activity_gmap_academias);
 
         // Verificar e solicitar permissões de localização
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
@@ -40,21 +40,22 @@ public class GMapActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     public void onMapReady(GoogleMap googleMap) {
         // Definindo as localizações dos marcadores
-        LatLng location1 = new LatLng(-23.6894277,-46.5955766); // Localização 1
-        LatLng location2 = new LatLng(-23.6844202, -46.6331142); // Localização 2
-        LatLng location3 = new LatLng(-23.6884202,-46.6291648); // Localização 3
-        LatLng location4 = new LatLng(-23.6928607,-46.6210102); // Localização 4
+        LatLng location1 = new LatLng(-23.6862792,-46.6122309); // Localização 1
+        LatLng location2 = new LatLng(-23.7164774,-46.6250747); // Localização 2
+        LatLng location3 = new LatLng(-23.6704323,-46.6033474); // Localização 3
+        LatLng location4 = new LatLng(-23.7046184,-46.6220289); // Localização 4
+
 
         // Adicionando os marcadores com título
-        Marker marker1 = googleMap.addMarker(new MarkerOptions().position(location1).title("Villa Fitness"));
-        Marker marker2 = googleMap.addMarker(new MarkerOptions().position(location2).title("Panabianco Diadema"));
-        Marker marker3 = googleMap.addMarker(new MarkerOptions().position(location3).title("Smart Fit Diadema"));
-        Marker marker4 = googleMap.addMarker(new MarkerOptions().position(location4).title("Bluefit Diadema"));
+        Marker marker1 = googleMap.addMarker(new MarkerOptions().position(location1).title("Parque do Paço"));
+        Marker marker2 = googleMap.addMarker(new MarkerOptions().position(location2).title("Parque do Eldorado"));
+        Marker marker3 = googleMap.addMarker(new MarkerOptions().position(location3).title("Parque Takebe"));
+        Marker marker4 = googleMap.addMarker(new MarkerOptions().position(location4).title("Parque Regional Oeste"));
 
         // Movendo a câmera para o centro entre as localizações
         LatLng center = new LatLng(
-                (-23.6894277 + -23.6844202 + -23.6884202 + -23.6928607) / 4,
-                (-46.5955766 + -46.6331142 + -46.6291648 + -46.6210102) / 4
+                (-23.6862792 + -23.7164774 + -23.6704323 + -23.7046184) / 4,
+                (-46.6122309 + -46.6250747 + -46.6033474 + -46.6220289) / 4
         );
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(center, 12));  // Ajusta o zoom e move a câmera
 
@@ -62,7 +63,8 @@ public class GMapActivity extends AppCompatActivity implements OnMapReadyCallbac
         marker1.showInfoWindow();  // Mostra a janela de informações para o primeiro marcador
         marker2.showInfoWindow();  // Mostra a janela de informações para o segundo marcador
         marker3.showInfoWindow();  // Mostra a janela de informações para o terceiro marcador
-        marker4.showInfoWindow();  // Mostra a janela de informações para o quarto marcador
+        marker4.showInfoWindow();  // Mostra a janela de informações para o terceiro marcador
+
 
         // Configura um listener de clique para os marcadores
         googleMap.setOnMarkerClickListener(marker -> {

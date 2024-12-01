@@ -52,9 +52,9 @@ public class TelaAgendarActivity extends AppCompatActivity {
                 }
 
                 // Limita o ano para 2 dígitos
-                if (text.length() > 7) {
+                if (text.length() > 10) {
                     // Se o ano for digitado com 4 dígitos, corta para 2 dígitos
-                    String correctedText = text.substring(0, 7);
+                    String correctedText = text.substring(0, 10);
                     data_aula.setText(correctedText);
                     data_aula.setSelection(correctedText.length());  // Posiciona o cursor no final
                 }

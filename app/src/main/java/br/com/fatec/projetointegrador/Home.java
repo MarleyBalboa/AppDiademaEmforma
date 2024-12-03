@@ -8,14 +8,21 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import br.com.fatec.projetointegrador.Buscar.TelaBuscaAcademias;
+import br.com.fatec.projetointegrador.Buscar.TelaBuscaNutricionista;
+import br.com.fatec.projetointegrador.Buscar.TelaBuscaParques;
+import br.com.fatec.projetointegrador.Buscar.TelaBuscaSaudeMental;
+import br.com.fatec.projetointegrador.Buscar.TelaPerfil;
+import br.com.fatec.projetointegrador.CadastroLogin.TelaAgendarActivity;
+
 public class Home extends AppCompatActivity {
 
+    CardView cardSaudeMental;
+    CardView cardNutricao;
     CardView cardAgendar;
     CardView cardAcademias;
     CardView cardParques;
     CardView cardPerfil;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,8 +33,22 @@ public class Home extends AppCompatActivity {
         cardAcademias = findViewById(R.id.cardAcademias);
         cardParques = findViewById(R.id.cardParques);
         cardPerfil = findViewById(R.id.cardPerfil);
+        cardNutricao = findViewById(R.id.cardNutricao);
+        cardSaudeMental = findViewById(R.id.cardSaudeMental);
 
 
+        cardNutricao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Home.this, TelaBuscaNutricionista.class));
+            }
+        });
+        cardSaudeMental.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Home.this, TelaBuscaSaudeMental.class));
+            }
+        });
         cardAgendar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

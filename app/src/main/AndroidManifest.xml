@@ -18,10 +18,22 @@
         android:theme="@style/Theme.ProjetoIntegrador"
         tools:targetApi="31">
         <activity
-            android:name=".GMapParquesActivity"
+            android:name=".GoogleMap.GMapSaudeMentalActivity"
             android:exported="false" />
         <activity
-            android:name=".TelaInicioBemVindo"
+            android:name=".Buscar.TelaBuscaSaudeMental"
+            android:exported="false" />
+        <activity
+            android:name=".GoogleMap.GMapNutricaoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Buscar.TelaBuscaNutricionista"
+            android:exported="false" />
+        <activity
+            android:name=".GoogleMap.GMapParquesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CadastroLogin.TelaInicioBemVindo"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,32 +42,32 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".GMapAcademiasActivity"
+            android:name=".GoogleMap.GMapAcademiasActivity"
             android:exported="false" />
         <activity
-            android:name=".TelaBuscaAcademias"
+            android:name=".Buscar.TelaBuscaAcademias"
             android:exported="false" />
         <activity
-            android:name=".TelaBuscaParques"
+            android:name=".Buscar.TelaBuscaParques"
             android:exported="false" />
         <activity
             android:name=".TelaConsultaActivity"
             android:exported="false" />
         <activity
-            android:name=".TelaAgendarActivity"
+            android:name=".CadastroLogin.TelaAgendarActivity"
             android:exported="false" />
         <activity
-            android:name=".TelaPerfil"
+            android:name=".Buscar.TelaPerfil"
             android:exported="false" />
         <activity
             android:name=".Home"
             android:exported="false" />
         <activity
-            android:name=".TelaCadastroActivity"
+            android:name=".CadastroLogin.TelaCadastroActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".MainActivity"
+            android:name=".CadastroLogin.TelaLoginActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
 

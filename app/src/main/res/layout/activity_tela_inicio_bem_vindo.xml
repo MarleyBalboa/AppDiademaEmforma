@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TelaInicioBemVindo">
+    tools:context=".CadastroLogin.TelaInicioBemVindo">
 
     <ImageView
         android:id="@+id/imageView"
@@ -27,7 +27,7 @@
         android:layout_marginBottom="200dp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.550"
+        app:layout_constraintHorizontal_bias="0.50"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/logo" />
 

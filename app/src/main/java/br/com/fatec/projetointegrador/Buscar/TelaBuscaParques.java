@@ -138,7 +138,7 @@ public class TelaBuscaParques extends AppCompatActivity {
     private void initRecyclerView() {
         ArrayList<DicasESugestoes> items = new ArrayList<>();
 
-        items.add(new DicasESugestoes("Transforme o parque no seu centro de bem-estar","PDE","img_dicas_parques11"));
+        items.add(new DicasESugestoes("Transforme o parque no seu centro de bem-estar","PDE","img_dicas_parques111"));
         items.add(new DicasESugestoes("A natureza e você, uma dupla imbatível!","PDE","img_dicas_parques22"));
         items.add(new DicasESugestoes("Respire fundo, mexa-se e liberte-se!","PDE","img_dicas_parques33"));
         items.add(new DicasESugestoes("Mude sua rotina, treine no parque!","PDE","img_dicas_parques44"));

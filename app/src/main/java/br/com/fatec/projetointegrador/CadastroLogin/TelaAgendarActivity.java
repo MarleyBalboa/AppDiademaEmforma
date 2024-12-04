@@ -6,124 +6,100 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatEditText;
 
+import br.com.fatec.projetointegrador.Adapter.AgendamentoManager;
+import br.com.fatec.projetointegrador.Agendamento;
 import br.com.fatec.projetointegrador.R;
 import br.com.fatec.projetointegrador.TelaConsultaActivity;
 
 public class TelaAgendarActivity extends AppCompatActivity {
 
-    private Button btnAgendar;  // Adiciona uma variável para o botão
+    private Button btnAgendar;
+    private TextView btnConsulta;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_tela_agendar); // Certifique-se de que está usando o layout correto
+        setContentView(R.layout.activity_tela_agendar);
 
         // Habilitar seta no ActionBar
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
+        // Botão Voltar
         ImageView backButton = findViewById(R.id.backButton);
         backButton.setOnClickListener(view -> finish());
 
-        // Inicializando o botão btnAgendar
+        // Inicializando os botões
         btnAgendar = findViewById(R.id.btnAgendar);
+        btnConsulta = findViewById(R.id.btnConsulta);
 
         // Configurando o clique no botão "Agendar"
         btnAgendar.setOnClickListener(v -> {
-            // Ao clicar no botão, redireciona para TelaConsultaActivity
-            startActivity(new Intent(TelaAgendarActivity.this, TelaConsultaActivity.class));
+            EditText dataAula = findViewById(R.id.data_aula);
+            EditText horarioAula = findViewById(R.id.horario_aula);
+            EditText localAula = findViewById(R.id.local_aula);
+
+            String data = dataAula.getText().toString();
+            String horario = horarioAula.getText().toString();
+            String local = localAula.getText().toString();
+
+            Intent intent = new Intent(TelaAgendarActivity.this, TelaConsultaActivity.class);
+            intent.putExtra("data", data);
+            intent.putExtra("horario", horario);
+            intent.putExtra("local", local);
+            startActivity(intent);
         });
 
-        AppCompatEditText data_aula = findViewById(R.id.data_aula);
-        data_aula.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int start, int count, int after) {
-            }
+        // Configurando o clique no botão "Consultar"
+        btnConsulta.setOnClickListener(v -> {
+            EditText dataAula = findViewById(R.id.data_aula);
+            EditText horarioAula = findViewById(R.id.horario_aula);
+            EditText localAula = findViewById(R.id.local_aula);
 
-            @Override
-            public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
-            }
+            String data = dataAula.getText().toString();
+            String horario = horarioAula.getText().toString();
+            String local = localAula.getText().toString();
 
-            @Override
-            public void afterTextChanged(Editable editable) {
-                String text = editable.toString();
+            Intent intent = new Intent(TelaAgendarActivity.this, TelaConsultaActivity.class);
+            intent.putExtra("data", data);
+            intent.putExtra("horario", horario);
+            intent.putExtra("local", local);
+            startActivity(intent);
+        });
 
-                // Verifica se a data está com o formato correto e adiciona a barra (/) automaticamente
-                if (text.length() == 2 || text.length() == 5) {
-                    text += "/";  // Adiciona a barra (/) automaticamente
-                    data_aula.setText(text);
-                    data_aula.setSelection(text.length());  // Posiciona o cursor no final
-                }
+        btnAgendar.setOnClickListener(v -> {
+            EditText dataAula = findViewById(R.id.data_aula);
+            EditText horarioAula = findViewById(R.id.horario_aula);
+            EditText localAula = findViewById(R.id.local_aula);
 
-                // Limita o ano para 2 dígitos
-                if (text.length() > 10) {
-                    // Se o ano for digitado com 4 dígitos, corta para 2 dígitos
-                    String correctedText = text.substring(0, 10);
-                    data_aula.setText(correctedText);
-                    data_aula.setSelection(correctedText.length());  // Posiciona o cursor no final
-                }
+            String data = dataAula.getText().toString();
+            String horario = horarioAula.getText().toString();
+            String local = localAula.getText().toString();
 
-                // Valida a data
-                if (text.length() == 10) { // Quando o formato completo de data for preenchido
-                    String[] parts = text.split("/");
+            // Adicionar o agendamento à lista global
+            Agendamento novoAgendamento = new Agendamento(data, horario, local);
+            AgendamentoManager.adicionarAgendamento(novoAgendamento);
 
-                    // Extrai o dia, mês e ano
-                    int day = Integer.parseInt(parts[0]);
-                    int month = Integer.parseInt(parts[1]);
-                    int year = Integer.parseInt("20" + parts[2]);  // Adiciona o prefixo '20' para formar o ano completo
-
-                    // Valida o ano (a partir de 2024)
-                    if (year < 2024) {
-                        data_aula.setError("O ano deve ser a partir de 2024.");
-                        return;
-                    }
-
-                    // Valida o mês (entre 1 e 12)
-                    if (month < 1 || month > 12) {
-                        data_aula.setError("Mês inválido. Deve ser entre 01 e 12.");
-                        return;
-                    }
-
-                    // Valida o dia dependendo do mês e ano (ano bissexto também)
-                    if (!isValidDay(day, month, year)) {
-                        data_aula.setError("Dia inválido para o mês e ano informados.");
-                    }
-                }
-            }
-
-            // Função para verificar se o dia é válido para o mês e ano
-            private boolean isValidDay(int day, int month, int year) {
-                // Array com o número de dias de cada mês (considerando o ano bissexto)
-                int[] daysInMonth = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-
-                // Se for fevereiro e o ano for bissexto, ajusta o número de dias
-                if (month == 2 && isLeapYear(year)) {
-                    daysInMonth[1] = 29;
-                }
-
-                // Verifica se o dia é válido para o mês
-                return day >= 1 && day <= daysInMonth[month - 1];
-            }
-
-            // Função para verificar se o ano é bissexto
-            private boolean isLeapYear(int year) {
-                return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
-            }
+            // Abrir a TelaConsultaActivity
+            Intent intent = new Intent(TelaAgendarActivity.this, TelaConsultaActivity.class);
+            startActivity(intent);
         });
     }
 
+    @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            // Voltar para a tela anterior
             finish();
             return true;
         }
@@ -136,3 +112,4 @@ public class TelaAgendarActivity extends AppCompatActivity {
         overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
     }
 }
+

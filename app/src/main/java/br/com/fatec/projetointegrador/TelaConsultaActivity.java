@@ -1,37 +1,72 @@
 package br.com.fatec.projetointegrador;
+
 import android.os.Bundle;
-import android.view.View;
+import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+
+import android.os.Bundle;
+import android.widget.Button;
+
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-public class TelaConsultaActivity
-        extends AppCompatActivity {
+import java.util.ArrayList;
+import java.util.List;
+
+import br.com.fatec.projetointegrador.Adapter.AgendamentoAdapter;
+import br.com.fatec.projetointegrador.Adapter.AgendamentoManager;
+
+public class TelaConsultaActivity extends AppCompatActivity {
+
+    private List<Agendamento> agendamentos = new ArrayList<>();
+    private AgendamentoAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_tela_consulta);
 
-        // Ajustando as margens para suportar o sistema de barras
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;        });
+        // Habilitar seta no ActionBar
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
 
-        // Referenciando o botão "Voltar"
-        Button btnVoltar = findViewById(R.id.button);
+        ImageView backButton = findViewById(R.id.backButton);
+        backButton.setOnClickListener(view -> finish());
 
-        // Configurando o clique no botão "Voltar"
-        btnVoltar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Fechando a atividade atual e retornando à tela anterior
-                finish();
-            }
-        });
+        // Configurar o RecyclerView
+        RecyclerView recyclerView = findViewById(R.id.recyclerViewAgendamentos);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        // Recuperar os agendamentos acumulados
+        List<Agendamento> agendamentos = AgendamentoManager.getAgendamentos();
+        AgendamentoAdapter adapter = new AgendamentoAdapter(agendamentos);
+        recyclerView.setAdapter(adapter);
+
+    }
+
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            // Voltar para a tela anterior
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
     }
 }

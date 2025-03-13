@@ -8,12 +8,14 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import br.com.fatec.projetointegrador.Backend.Api.UsuarioApi;
 import br.com.fatec.projetointegrador.Buscar.TelaBuscaAcademias;
 import br.com.fatec.projetointegrador.Buscar.TelaBuscaNutricionista;
 import br.com.fatec.projetointegrador.Buscar.TelaBuscaParques;
 import br.com.fatec.projetointegrador.Buscar.TelaBuscaSaudeMental;
 import br.com.fatec.projetointegrador.Buscar.TelaPerfil;
 import br.com.fatec.projetointegrador.CadastroLogin.TelaAgendarActivity;
+import br.com.fatec.projetointegrador.Configuration.RetrofitClient;
 
 public class Home extends AppCompatActivity {
 
@@ -28,6 +30,11 @@ public class Home extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        // ApiService para fazer as requisições do Backend
+        // UsuarioApi = Faz requisições do Backend para buscar e enviar dados para a classe de Usuario
+        UsuarioApi usuarioApi = RetrofitClient.getUsuarioApi().create(UsuarioApi.class);
+
 
         cardAgendar = findViewById(R.id.cardAgendar);
         cardAcademias = findViewById(R.id.cardAcademias);

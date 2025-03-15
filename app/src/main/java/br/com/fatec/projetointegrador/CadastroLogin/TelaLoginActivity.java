@@ -26,7 +26,7 @@ public class TelaLoginActivity extends AppCompatActivity {
 
         // Inicializando os elementos da interface
         editTextText3 = findViewById(R.id.editTextText3);
-        editTextTextPassword = findViewById(R.id.editTextTextPassword);
+        editTextTextPassword = findViewById(R.id.editTextTextEmail);
         btnEntrar = findViewById(R.id.btnEntrar);
 
         // Inicializando o helper do banco de dados

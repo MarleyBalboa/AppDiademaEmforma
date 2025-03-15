@@ -77,7 +77,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
+            app:layout_constraintTop_toBottomOf="@+id/editTextTextEmail" />
 
         <TextView
             android:id="@+id/textView7"
@@ -91,7 +91,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword2" />
+            app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnRegistrar"
@@ -106,7 +106,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword3" />
+            app:layout_constraintTop_toBottomOf="@+id/editTextTextConfirmPassword" />
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/editTextText3"
@@ -127,7 +127,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
         <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/editTextTextPassword"
+            android:id="@+id/editTextTextEmail"
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:layout_marginStart="32dp"
@@ -145,7 +145,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
         <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/editTextTextPassword2"
+            android:id="@+id/editTextTextPassword"
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:layout_marginStart="32dp"
@@ -163,7 +163,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
         <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/editTextTextPassword3"
+            android:id="@+id/editTextTextConfirmPassword"
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:layout_marginStart="32dp"

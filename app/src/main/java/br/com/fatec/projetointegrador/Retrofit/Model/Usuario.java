@@ -1,4 +1,4 @@
-package br.com.fatec.projetointegrador.Backend.Model;
+package br.com.fatec.projetointegrador.Retrofit.Model;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -67,6 +67,12 @@ public class Usuario {
         this.dataAtualizacao = dataAtualizacao;
         Papel = papel;
         Especialidade = especialidade;
+    }
+
+    public Usuario(String usuario, String email, String senha) {
+        this.usuario = usuario;
+        this.email = email;
+        this.senha = senha;
     }
 
     public Long getId() {

@@ -1,6 +1,6 @@
-package br.com.fatec.projetointegrador.Backend.Api;
+package br.com.fatec.projetointegrador.Retrofit.Api;
 
-import br.com.fatec.projetointegrador.Backend.Model.Usuario;
+import br.com.fatec.projetointegrador.Retrofit.Model.Usuario;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;

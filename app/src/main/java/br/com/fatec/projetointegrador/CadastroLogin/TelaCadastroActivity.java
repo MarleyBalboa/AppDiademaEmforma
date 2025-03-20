@@ -5,12 +5,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Patterns;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatEditText;
+
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import br.com.fatec.projetointegrador.Configuration.RetrofitClient;
 import br.com.fatec.projetointegrador.R;
@@ -22,8 +28,12 @@ import retrofit2.Response;
 
 public class TelaCadastroActivity extends AppCompatActivity {
 
-    private AppCompatEditText usernameInput, emailInput, passwordInput, confirmPasswordInput;
+    // Aqui iniciamos as variáveis que conterão os dados de cadastro do usuário
+    // username, email, password, confirm password, telefone opcional e se é usuário comum ou profissional
+    // e também cria uma variável para a seleção de Papel como roleSprinner e seleção de especialidade como specialtySpinner
+    private AppCompatEditText usernameInput, emailInput, passwordInput, confirmPasswordInput, telephoneInput, roleInput;
     private AppCompatButton registerButton;
+    private Spinner roleSpinner, specialtySpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,11 +44,16 @@ public class TelaCadastroActivity extends AppCompatActivity {
     }
 
     private void initializeComponents() {
-        usernameInput = findViewById(R.id.editTextText3);
+        usernameInput = findViewById(R.id.editTextTextUsername);
         emailInput = findViewById(R.id.editTextTextEmail);
+        roleSpinner =  findViewById(R.id.spinner_EditRole);
+        specialtySpinner = findViewById(R.id.spinner_EditSpecialty);
         passwordInput = findViewById(R.id.editTextTextPassword);
         confirmPasswordInput = findViewById(R.id.editTextTextConfirmPassword);
         registerButton = findViewById(R.id.btnRegistrar);
+
+        //Inicializa o spinner de papéis e especialidades
+        setupSpinner();
     }
 
     private void registerUser() {
@@ -96,6 +111,42 @@ public class TelaCadastroActivity extends AppCompatActivity {
                     finish();
                 })
                 .create();
+    }
+
+    private void setupSpinner() {
+        // Lista de papéis do usuário
+        String[] roles = {"Usuário Comum", "Usuário Profissional", "Administrador"};
+
+    // Lista de especialidades
+        String[] specialties = {"Nutricionista", "Personal Trainer", "Psicólogo", "Outro"};
+
+        ArrayAdapter<String> adapterRoles = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, roles);
+        adapterRoles.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        roleSpinner.setAdapter(adapterRoles);
+
+    // Inicialmente, escondemos o spinner de especialidades
+        specialtySpinner.setVisibility(View.GONE);
+
+        roleSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedRole = roles[position];
+
+                // Se for "Usuário Profissional", mostramos o spinner de especialidade
+                if ("Usuário Profissional".equals(selectedRole)) {
+                    ArrayAdapter<String> adapterSpecialties = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, specialties);
+                    adapterSpecialties.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    specialtySpinner.setAdapter(adapterSpecialties);
+                    specialtySpinner.setVisibility(View.VISIBLE);
+                } else {
+                    specialtySpinner.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
     }
 
     private void clearFields() {

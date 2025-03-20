@@ -63,7 +63,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.094"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextText3" />
+            app:layout_constraintTop_toBottomOf="@+id/editTextTextUsername" />
 
         <TextView
             android:id="@+id/textView6"
@@ -109,7 +109,7 @@
             app:layout_constraintTop_toBottomOf="@+id/editTextTextConfirmPassword" />
 
         <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/editTextText3"
+            android:id="@+id/editTextTextUsername"
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:layout_marginStart="32dp"
@@ -143,6 +143,30 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/spinner_EditRole"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            app:layout_constraintTop_toBottomOf="@id/editTextTextEmail"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/spinner_EditSpecialty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/spinner_EditRole"
+            app:layout_constraintStart_toStartOf="@id/spinner_EditRole"
+            app:layout_constraintEnd_toEndOf="parent" />
+
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/editTextTextPassword"

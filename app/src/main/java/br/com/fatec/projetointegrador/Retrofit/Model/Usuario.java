@@ -28,10 +28,10 @@ public class Usuario {
     private LocalDateTime dataAtualizacao;
 
     @SerializedName("papel")
-    private Papel Papel;
+    private Papel papel  = Papel.USUARIO_COMUM;
 
     @SerializedName("especialidade")
-    private Especialidade Especialidade;
+    private Especialidade especialidade = Especialidade.OUTROS;
 
     public enum Papel {
         ADMINISTRADOR("administrador"),
@@ -57,7 +57,7 @@ public class Usuario {
         OUTROS
     }
 
-    public Usuario(Long id, String usuario, String email, String senha, String telefone, LocalDateTime dataCriacao, LocalDateTime dataAtualizacao, Papel papel, Especialidade especialidade) {
+    public Usuario(Long id, String usuario, String email, String senha, String telefone, LocalDateTime dataCriacao, LocalDateTime dataAtualizacao) {
         this.id = id;
         this.usuario = usuario;
         this.email = email;
@@ -65,8 +65,6 @@ public class Usuario {
         this.telefone = telefone;
         this.dataCriacao = dataCriacao;
         this.dataAtualizacao = dataAtualizacao;
-        Papel = papel;
-        Especialidade = especialidade;
     }
 
     public Usuario(String usuario, String email, String senha) {
@@ -125,21 +123,5 @@ public class Usuario {
 
     public void setDataAtualizacao(LocalDateTime dataAtualizacao) {
         this.dataAtualizacao = dataAtualizacao;
-    }
-
-    public Papel getPapel() {
-        return Papel;
-    }
-
-    public void setPapel(Papel papel) {
-        Papel = papel;
-    }
-
-    public Especialidade getEspecialidade() {
-        return Especialidade;
-    }
-
-    public void setEspecialidade(Especialidade especialidade) {
-        Especialidade = especialidade;
     }
 }

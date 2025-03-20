@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.util.Patterns;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
@@ -33,6 +34,7 @@ public class TelaCadastroActivity extends AppCompatActivity {
     // e também cria uma variável para a seleção de Papel como roleSprinner e seleção de especialidade como specialtySpinner
     private AppCompatEditText usernameInput, emailInput, passwordInput, confirmPasswordInput, telephoneInput, roleInput;
     private AppCompatButton registerButton;
+    private TextView btnLogin;
     private Spinner roleSpinner, specialtySpinner;
 
     @Override
@@ -54,6 +56,13 @@ public class TelaCadastroActivity extends AppCompatActivity {
 
         //Inicializa o spinner de papéis e especialidades
         setupSpinner();
+
+        // Troca para a tela de login
+        btnLogin = findViewById(R.id.btnLogin);
+        btnLogin.setOnClickListener(view -> {
+            startActivity(new Intent(this, TelaLoginActivity.class));
+            finish();
+        });
     }
 
     private void registerUser() {

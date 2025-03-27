@@ -91,12 +91,13 @@ public class TelaCadastroActivity extends AppCompatActivity {
         Usuario.Papel role;
         Usuario.Especialidade specialty;
         try {
-            role = Usuario.Papel.valueOf(selectedRole.replace(" ", "_").toUpperCase());
+            role = Usuario.Papel.fromString(selectedRole);
             specialty = Usuario.Especialidade.valueOf(selectedSpecialty.replace(" ", "_").toUpperCase());
         } catch (IllegalArgumentException e) {
             Toast.makeText(this, "Erro ao selecionar papel ou especialidade!", Toast.LENGTH_SHORT).show();
             return;
         }
+
 
 
         if (!validateInputs(username, email, password, confirmPassword)) {

@@ -47,6 +47,16 @@ public class Usuario {
         public String getPapel() {
             return papel;
         }
+
+        public static Papel fromString(String value) {
+            for (Papel papel : Papel.values()) {
+                if (papel.papel.equalsIgnoreCase(value)) {
+                    return papel;
+                }
+            }
+            throw new IllegalArgumentException("Papel inválido: " + value);
+        }
+
     }
 
     public enum Especialidade {

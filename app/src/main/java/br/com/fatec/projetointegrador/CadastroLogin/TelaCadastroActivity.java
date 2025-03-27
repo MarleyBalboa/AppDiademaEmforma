@@ -19,6 +19,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import com.google.gson.Gson;
+
 import br.com.fatec.projetointegrador.Configuration.RetrofitClient;
 import br.com.fatec.projetointegrador.R;
 import br.com.fatec.projetointegrador.Retrofit.Api.UsuarioApi;
@@ -70,12 +72,38 @@ public class TelaCadastroActivity extends AppCompatActivity {
         String email = emailInput.getText().toString().trim();
         String password = passwordInput.getText().toString().trim();
         String confirmPassword = confirmPasswordInput.getText().toString().trim();
+        String selectedRole = roleSpinner.getSelectedItem() != null ? roleSpinner.getSelectedItem().toString() : "";
+        String selectedSpecialty = specialtySpinner.getSelectedItem() != null ? specialtySpinner.getSelectedItem().toString() : "";
+
+        // Remover espaços e acentos
+        selectedRole = selectedRole.replace(" ", "_").toUpperCase();
+        selectedRole = removeAccents(selectedRole);  // Função para remover acentos
+
+        // Log para ver se as informações estão sendo capturadas corretamente
+        Log.d("TelaCadastroActivity", "Username: " + username);
+        Log.d("TelaCadastroActivity", "Email: " + email);
+        Log.d("TelaCadastroActivity", "Password: " + password);
+        Log.d("TelaCadastroActivity", "Confirm Password: " + confirmPassword);
+        Log.d("TelaCadastroActivity", "Selected Role: " + selectedRole);
+        Log.d("TelaCadastroActivity", "Selected Specialty: " + selectedSpecialty);
+
+        // Primeiro verificamos se o papel ou especialidade selecionados são válidos
+        Usuario.Papel role;
+        Usuario.Especialidade specialty;
+        try {
+            role = Usuario.Papel.valueOf(selectedRole.replace(" ", "_").toUpperCase());
+            specialty = Usuario.Especialidade.valueOf(selectedSpecialty.replace(" ", "_").toUpperCase());
+        } catch (IllegalArgumentException e) {
+            Toast.makeText(this, "Erro ao selecionar papel ou especialidade!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
 
         if (!validateInputs(username, email, password, confirmPassword)) {
             return;
         }
 
-        Usuario usuario = new Usuario(username, email, password);
+        Usuario usuario = new Usuario(username, email, password, role, specialty);
         UsuarioApi usuarioApi = new RetrofitClient().getRetrofit().create(UsuarioApi.class);
         usuarioApi.criarUsuario(usuario).enqueue(new Callback<Usuario>() {
             @Override
@@ -94,6 +122,9 @@ public class TelaCadastroActivity extends AppCompatActivity {
                 Log.e("TelaCadastroActivity", "Erro: " + t.getMessage());
             }
         });
+
+        // Log para fazer depuração
+        Log.d("TelaCadastroActivity", "Enviando usuário: " + new Gson().toJson(usuario));
     }
 
     private boolean validateInputs(String username, String email, String password, String confirmPassword) {
@@ -157,6 +188,12 @@ public class TelaCadastroActivity extends AppCompatActivity {
             }
         });
     }
+
+    private String removeAccents(String text) {
+        String normalized = java.text.Normalizer.normalize(text, java.text.Normalizer.Form.NFD);
+        return normalized.replaceAll("[^\\p{ASCII}]", "");
+    }
+
 
     private void clearFields() {
         usernameInput.setText("");

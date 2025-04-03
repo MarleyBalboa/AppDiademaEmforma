@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <domain-config cleartextTrafficPermitted="true">
+        <!-- Permite o tráfego HTTP não criptografado para o seu IP -->
+        <domain includeSubdomains="true">10.0.2.2</domain> <!-- IP da sua máquina -->
+    </domain-config>
+</network-security-config>

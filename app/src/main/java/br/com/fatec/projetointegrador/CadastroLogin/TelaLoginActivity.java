@@ -15,7 +15,7 @@ import br.com.fatec.projetointegrador.R;
 
 public class TelaLoginActivity extends AppCompatActivity {
 
-    private AppCompatEditText editTextText3, editTextTextPassword;
+    private AppCompatEditText editTextUsername, editTextPassword;
     private AppCompatButton btnEntrar;
     private DatabaseHelper databaseHelper;
 
@@ -25,8 +25,8 @@ public class TelaLoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // Inicializando os elementos da interface
-        editTextText3 = findViewById(R.id.editTextText3);
-        editTextTextPassword = findViewById(R.id.editTextTextEmail);
+        editTextUsername = findViewById(R.id.editTextUsername);
+        editTextPassword = findViewById(R.id.editTextPassword);
         btnEntrar = findViewById(R.id.btnEntrar);
 
         // Inicializando o helper do banco de dados
@@ -35,8 +35,8 @@ public class TelaLoginActivity extends AppCompatActivity {
         // Ação do botão de login
         btnEntrar.setOnClickListener(view -> {
 
-            String usuarioInput = editTextText3.getText().toString().trim();
-            String senhaInput = editTextTextPassword.getText().toString();
+            String usuarioInput = editTextUsername.getText().toString().trim();
+            String senhaInput = editTextPassword.getText().toString();
 
             if (usuarioInput.isEmpty() || senhaInput.isEmpty()) {
                 Toast.makeText(TelaLoginActivity.this, "Preencha todos os campos!", Toast.LENGTH_SHORT).show();

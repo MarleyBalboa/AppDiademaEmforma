@@ -33,52 +33,6 @@ public class Usuario {
     @SerializedName("especialidade")
     private Especialidade especialidade;
 
-    public enum Papel {
-        ADMINISTRADOR("administrador"),
-        USUARIO_COMUM("usuario_comum"),
-        USUARIO_PROFISSIONAL("usuario_profissional");
-
-        private final String papel;
-
-        Papel(String papel) {
-            this.papel = papel;
-        }
-
-        public String getPapel() {
-            return papel;
-        }
-
-        public static Papel fromString(String value) {
-            for (Papel papel : Papel.values()) {
-                if (papel.papel.equalsIgnoreCase(value)) {
-                    return papel;
-                }
-            }
-            throw new IllegalArgumentException("Papel inválido: " + value);
-        }
-
-    }
-
-    public enum Especialidade {
-        NUTRICIONISTA,
-        PERSONAL_TRAINER,
-        FISIOTERAPEUTA,
-        PSICOLOGO,
-        OUTROS
-    }
-
-    public Usuario(Long id, String usuario, String email, String senha, LocalDateTime dataCriacao, LocalDateTime dataAtualizacao, Papel papel, Especialidade especialidade) {
-        this.id = id;
-        this.usuario = usuario;
-        this.email = email;
-        this.senha = senha;
-        this.telefone = "";
-        this.dataCriacao = dataCriacao;
-        this.dataAtualizacao = dataAtualizacao;
-        this.papel = papel;
-        this.especialidade = especialidade;
-    }
-
     public Usuario(String usuario, String email, String senha, Papel papel, Especialidade especialidade) {
         this.usuario = usuario;
         this.email = email;
@@ -87,14 +41,14 @@ public class Usuario {
         this.especialidade = especialidade;
     }
 
-    public Usuario(String usuario, String email, String senha) {
-        this.usuario = usuario;
-        this.email = email;
-        this.senha = senha;
-    }
+
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getUsuario() {
@@ -149,7 +103,15 @@ public class Usuario {
         return papel;
     }
 
+    public void setPapel(Papel papel) {
+        this.papel = papel;
+    }
+
     public Especialidade getEspecialidade() {
         return especialidade;
+    }
+
+    public void setEspecialidade(Especialidade especialidade) {
+        this.especialidade = especialidade;
     }
 }

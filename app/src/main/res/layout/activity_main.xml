@@ -67,7 +67,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.094"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText3" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextUsername" />
 
     <!--botão entrar -->
 
@@ -83,7 +83,7 @@
         android:background="@drawable/btn_fundo_bemvindo"
         android:text="Login"
         android:textColor="#FFA500"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextEmail"
+        app:layout_constraintTop_toBottomOf="@+id/editTextPassword"
         tools:layout_editor_absoluteX="-11dp" />
 
     <LinearLayout
@@ -108,7 +108,7 @@
     </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/editTextText3"
+        android:id="@+id/editTextUsername"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:layout_marginStart="32dp"
@@ -125,7 +125,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/editTextTextEmail"
+        android:id="@+id/editTextPassword"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:layout_marginStart="32dp"

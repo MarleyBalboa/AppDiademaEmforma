@@ -17,13 +17,14 @@ import androidx.appcompat.widget.AppCompatEditText;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Spinner;
 
 import com.google.gson.Gson;
 
 import br.com.fatec.projetointegrador.Configuration.RetrofitClient;
 import br.com.fatec.projetointegrador.R;
 import br.com.fatec.projetointegrador.Retrofit.Api.UsuarioApi;
+import br.com.fatec.projetointegrador.Retrofit.Model.Especialidade;
+import br.com.fatec.projetointegrador.Retrofit.Model.Papel;
 import br.com.fatec.projetointegrador.Retrofit.Model.Usuario;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -33,11 +34,10 @@ public class TelaCadastroActivity extends AppCompatActivity {
 
     // Aqui iniciamos as variáveis que conterão os dados de cadastro do usuário
     // username, email, password, confirm password, telefone opcional e se é usuário comum ou profissional
-    // e também cria uma variável para a seleção de Papel como roleSprinner e seleção de especialidade como specialtySpinner
     private AppCompatEditText usernameInput, emailInput, passwordInput, confirmPasswordInput, telephoneInput, roleInput;
     private AppCompatButton registerButton;
+    private Spinner spinnerPapel, spinnerEspecialidade;
     private TextView btnLogin;
-    private Spinner roleSpinner, specialtySpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,12 +49,13 @@ public class TelaCadastroActivity extends AppCompatActivity {
 
     private void initializeComponents() {
         usernameInput = findViewById(R.id.editTextTextUsername);
-        emailInput = findViewById(R.id.editTextTextEmail);
-        roleSpinner =  findViewById(R.id.spinner_EditRole);
-        specialtySpinner = findViewById(R.id.spinner_EditSpecialty);
+        emailInput = findViewById(R.id.editTextPassword);
         passwordInput = findViewById(R.id.editTextTextPassword);
         confirmPasswordInput = findViewById(R.id.editTextTextConfirmPassword);
         registerButton = findViewById(R.id.btnRegistrar);
+
+        spinnerPapel = findViewById(R.id.spinner_EditRole);
+        spinnerEspecialidade = findViewById(R.id.spinner_EditSpecialty);
 
         //Inicializa o spinner de papéis e especialidades
         setupSpinner();
@@ -72,30 +73,17 @@ public class TelaCadastroActivity extends AppCompatActivity {
         String email = emailInput.getText().toString().trim();
         String password = passwordInput.getText().toString().trim();
         String confirmPassword = confirmPasswordInput.getText().toString().trim();
-        String selectedRole = roleSpinner.getSelectedItem() != null ? roleSpinner.getSelectedItem().toString() : "";
-        String selectedSpecialty = specialtySpinner.getSelectedItem() != null ? specialtySpinner.getSelectedItem().toString() : "";
+        Papel selectedRole = (Papel) spinnerPapel.getSelectedItem();
+        Especialidade selectedSpecialty = selectedRole == Papel.USUARIO_PROFISSIONAL ?
+                (Especialidade) spinnerEspecialidade.getSelectedItem() : null;
 
-        // Remover espaços e acentos
-        selectedRole = selectedRole.replace(" ", "_").toUpperCase();
-        selectedRole = removeAccents(selectedRole);  // Função para remover acentos
 
-        // Log para ver se as informações estão sendo capturadas corretamente
-        Log.d("TelaCadastroActivity", "Username: " + username);
-        Log.d("TelaCadastroActivity", "Email: " + email);
-        Log.d("TelaCadastroActivity", "Password: " + password);
-        Log.d("TelaCadastroActivity", "Confirm Password: " + confirmPassword);
-        Log.d("TelaCadastroActivity", "Selected Role: " + selectedRole);
-        Log.d("TelaCadastroActivity", "Selected Specialty: " + selectedSpecialty);
-
-        // Primeiro verificamos se o papel ou especialidade selecionados são válidos
-        Usuario.Papel role;
-        Usuario.Especialidade specialty;
-        try {
-            role = Usuario.Papel.fromString(selectedRole);
-            specialty = Usuario.Especialidade.valueOf(selectedSpecialty.replace(" ", "_").toUpperCase());
-        } catch (IllegalArgumentException e) {
-            Toast.makeText(this, "Erro ao selecionar papel ou especialidade!", Toast.LENGTH_SHORT).show();
-            return;
+        // Checa se o papel é usuário profissional, se for, ele cria com o campo especialidade, se não for, envia como nulo
+        Usuario usuario;
+        if (selectedRole == Papel.USUARIO_PROFISSIONAL) {
+            usuario = new Usuario(username, email, password, selectedRole, selectedSpecialty);
+        } else {
+            usuario = new Usuario(username, email, password, selectedRole, null);
         }
 
 
@@ -104,7 +92,6 @@ public class TelaCadastroActivity extends AppCompatActivity {
             return;
         }
 
-        Usuario usuario = new Usuario(username, email, password, role, specialty);
         UsuarioApi usuarioApi = new RetrofitClient().getRetrofit().create(UsuarioApi.class);
         usuarioApi.criarUsuario(usuario).enqueue(new Callback<Usuario>() {
             @Override
@@ -124,9 +111,10 @@ public class TelaCadastroActivity extends AppCompatActivity {
             }
         });
 
-        // Log para fazer depuração
         Log.d("TelaCadastroActivity", "Enviando usuário: " + new Gson().toJson(usuario));
     }
+
+
 
     private boolean validateInputs(String username, String email, String password, String confirmPassword) {
         if (username.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
@@ -154,46 +142,40 @@ public class TelaCadastroActivity extends AppCompatActivity {
                 .create();
     }
 
-    private void setupSpinner() {
-        // Lista de papéis do usuário
-        String[] roles = {"Usuário Comum", "Usuário Profissional", "Administrador"};
-
-    // Lista de especialidades
-        String[] specialties = {"Nutricionista", "Personal Trainer", "Psicólogo", "Outro"};
-
-        ArrayAdapter<String> adapterRoles = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, roles);
-        adapterRoles.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        roleSpinner.setAdapter(adapterRoles);
-
-    // Inicialmente, escondemos o spinner de especialidades
-        specialtySpinner.setVisibility(View.GONE);
-
-        roleSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String selectedRole = roles[position];
-
-                // Se for "Usuário Profissional", mostramos o spinner de especialidade
-                if ("Usuário Profissional".equals(selectedRole)) {
-                    ArrayAdapter<String> adapterSpecialties = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, specialties);
-                    adapterSpecialties.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    specialtySpinner.setAdapter(adapterSpecialties);
-                    specialtySpinner.setVisibility(View.VISIBLE);
-                } else {
-                    specialtySpinner.setVisibility(View.GONE);
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
-    }
-
     private String removeAccents(String text) {
         String normalized = java.text.Normalizer.normalize(text, java.text.Normalizer.Form.NFD);
         return normalized.replaceAll("[^\\p{ASCII}]", "");
     }
+
+    private void setupSpinner() {
+        ArrayAdapter<Papel> papelAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, Papel.values());
+        papelAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerPapel.setAdapter(papelAdapter);
+
+        ArrayAdapter<Especialidade> especialidadeAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, Especialidade.values());
+        especialidadeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerEspecialidade.setAdapter(especialidadeAdapter);
+
+        // Inicialmente esconde o spinner de especialidades
+        spinnerEspecialidade.setVisibility(View.GONE);
+
+        // Mostra ou esconde baseado na seleção
+        spinnerPapel.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Papel papelSelecionado = (Papel) parent.getItemAtPosition(position);
+                if (papelSelecionado == Papel.USUARIO_PROFISSIONAL) {
+                    spinnerEspecialidade.setVisibility(View.VISIBLE);
+                } else {
+                    spinnerEspecialidade.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {}
+        });
+    }
+
 
 
     private void clearFields() {

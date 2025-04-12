@@ -22,10 +22,10 @@ public class Usuario {
     private String telefone;
 
     @SerializedName("dataCriacao")
-    private LocalDateTime dataCriacao;
+    private String dataCriacao;
 
     @SerializedName("dataAtualizacao")
-    private LocalDateTime dataAtualizacao;
+    private String dataAtualizacao;
 
     @SerializedName("papel")
     private Papel papel;
@@ -83,19 +83,19 @@ public class Usuario {
         this.telefone = telefone;
     }
 
-    public LocalDateTime getDataCriacao() {
+    public String getDataCriacao() {
         return dataCriacao;
     }
 
-    public void setDataCriacao(LocalDateTime dataCriacao) {
+    public void setDataCriacao(String dataCriacao) {
         this.dataCriacao = dataCriacao;
     }
 
-    public LocalDateTime getDataAtualizacao() {
+    public String getDataAtualizacao() {
         return dataAtualizacao;
     }
 
-    public void setDataAtualizacao(LocalDateTime dataAtualizacao) {
+    public void setDataAtualizacao(String dataAtualizacao) {
         this.dataAtualizacao = dataAtualizacao;
     }
 

@@ -23,7 +23,7 @@ public interface UsuarioApi {
     @GET("/usuario/buscar-por-email/{email}")
     Call<Usuario> buscarUsuarioPorEmail(@Path("email") String email);
 
-    @POST("/usuario/criar")
+    @POST("/auth/cadastro")
     Call<Usuario> criarUsuario(@Body Usuario usuario);
 
     @PUT("/usuario/atualizar/{id}")

@@ -27,21 +27,6 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <!-- Caixa de texto de pesquisa -->
-    <EditText
-        android:id="@+id/searchBox"
-        android:layout_width="0dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:hint="Pesquisar..."
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
-        android:background="@drawable/rounded_search_box"
-        android:drawableRight="@drawable/pesquisar"
-        app:layout_constraintStart_toEndOf="@id/headerTitle"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
 
 
     <com.google.android.material.card.MaterialCardView

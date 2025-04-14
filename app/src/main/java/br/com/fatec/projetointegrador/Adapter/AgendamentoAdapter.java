@@ -35,6 +35,8 @@ public class AgendamentoAdapter extends RecyclerView.Adapter<AgendamentoAdapter.
         holder.textData.setText("Data: " + agendamento.getData());
         holder.textHorario.setText("Horário: " + agendamento.getHorario());
         holder.textLocal.setText("Local: " + agendamento.getLocal());
+        holder.textTipoAgen.setText("Tipo de agendamento: " + agendamento.getTipoAgendamento());
+        holder.textProf.setText("Profissional: " + agendamento.getProfissional());
     }
 
     @Override
@@ -43,13 +45,15 @@ public class AgendamentoAdapter extends RecyclerView.Adapter<AgendamentoAdapter.
     }
 
     static class AgendamentoViewHolder extends RecyclerView.ViewHolder {
-        TextView textData, textHorario, textLocal;
+        TextView textData, textHorario, textLocal, textTipoAgen, textProf;
 
         public AgendamentoViewHolder(@NonNull View itemView) {
             super(itemView);
             textData = itemView.findViewById(R.id.textData);
             textHorario = itemView.findViewById(R.id.textHorario);
             textLocal = itemView.findViewById(R.id.textLocal);
+            textTipoAgen = itemView.findViewById(R.id.textTipoAgen);
+            textProf = itemView.findViewById(R.id.textProf);
         }
     }
 }

@@ -2,7 +2,9 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.ProjetoIntegrador" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/laranjaClaro</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
     </style>
 
     <style name="Theme.ProjetoIntegrador" parent="Base.Theme.ProjetoIntegrador" />

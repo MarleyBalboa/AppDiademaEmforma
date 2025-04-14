@@ -4,11 +4,15 @@ public class Agendamento {
     private String data;
     private String horario;
     private String local;
+    private String tipoAgendamento;
+    private String profissional;
 
-    public Agendamento(String data, String horario, String local) {
+    public Agendamento(String data, String horario, String local, String tipoAgendamento, String profissional) {
         this.data = data;
         this.horario = horario;
         this.local = local;
+        this.tipoAgendamento = tipoAgendamento;
+        this.profissional = profissional;
     }
 
     public String getData() {
@@ -21,5 +25,13 @@ public class Agendamento {
 
     public String getLocal() {
         return local;
+    }
+
+    public String getTipoAgendamento() {
+        return tipoAgendamento;
+    }
+
+    public String getProfissional() {
+        return profissional;
     }
 }

@@ -1,5 +1,7 @@
 package br.com.fatec.projetointegrador.Retrofit.Api;
 
+import br.com.fatec.projetointegrador.Retrofit.Model.LoginRequest;
+import br.com.fatec.projetointegrador.Retrofit.Model.LoginResponse;
 import br.com.fatec.projetointegrador.Retrofit.Model.Usuario;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -24,7 +26,10 @@ public interface UsuarioApi {
     Call<Usuario> buscarUsuarioPorEmail(@Path("email") String email);
 
     @POST("/auth/cadastro")
-    Call<Usuario> criarUsuario(@Body Usuario usuario);
+    Call<Usuario> criarUsuario(@Body Usuario cadastro);
+
+    @POST("/auth/login")
+    Call<LoginResponse> login(@Body LoginRequest login);
 
     @PUT("/usuario/atualizar/{id}")
     Call<Usuario> atualizarUsuario(@Path("id") Long id, @Body Usuario usuario);

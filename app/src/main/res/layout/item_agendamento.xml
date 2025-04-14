@@ -3,14 +3,16 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    card_view:cardCornerRadius="8dp">
+    android:layout_margin="12dp"
+    card_view:cardCornerRadius="16dp"
+    card_view:cardElevation="6dp"
+    android:backgroundTint="@android:color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp"
+        android:padding="20dp"
         android:background="@color/laranja">
 
         <TextView
@@ -18,18 +20,44 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Data: "
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:textColor="@android:color/white" />
 
         <TextView
             android:id="@+id/textHorario"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Horário: " />
+            android:text="Horário: "
+            android:layout_marginTop="4dp"
+            android:textSize="16sp"
+            android:textColor="@android:color/white" />
 
         <TextView
             android:id="@+id/textLocal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Local: " />
+            android:text="Local: "
+            android:layout_marginTop="4dp"
+            android:textSize="16sp"
+            android:textColor="@android:color/white" />
+
+        <TextView
+            android:id="@+id/textTipoAgen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tipo de agendamento: "
+            android:layout_marginTop="4dp"
+            android:textSize="16sp"
+            android:textColor="@android:color/white" />
+
+        <TextView
+            android:id="@+id/textProf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Profissional: "
+            android:layout_marginTop="4dp"
+            android:textSize="16sp"
+            android:textColor="@android:color/white" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

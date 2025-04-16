@@ -71,6 +71,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/nomeTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Valdomiro Ramalho"
@@ -78,15 +79,17 @@
                         android:textSize="20sp"/>
 
                     <TextView
+                        android:id="@+id/nascimentoTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Nascimento: 30/10/1988"
                         android:textColor="@color/black" />
 
                     <TextView
+                        android:id="@+id/telefoneTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Sexo: Masculino"
+                        android:text="Telefone: 4002-8922"
                         android:textColor="@color/black" />
 
                 </LinearLayout>

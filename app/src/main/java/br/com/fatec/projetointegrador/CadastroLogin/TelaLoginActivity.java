@@ -1,6 +1,7 @@
 package br.com.fatec.projetointegrador.CadastroLogin;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.util.Log;
@@ -64,7 +65,19 @@ public class TelaLoginActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
+
                     LoginResponse loginResponse = response.body();
+                    Long id = loginResponse.getId();
+
+                    // Salva o ID do usuário logado no SharedPreferences
+                    SharedPreferences sharedPreferences = getSharedPreferences("AppPrefs", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putLong("USER_ID", loginResponse.getId());
+                    editor.putString("USER_NOME", loginResponse.getNome());
+                    editor.putString("USER_DATA_NASCIMENTO", loginResponse.getDataNascimento());
+                    editor.putString("USER_TELEFONE", loginResponse.getTelefone());
+                    editor.apply();
+
                     startActivity(new Intent(TelaLoginActivity.this, Home.class)
                             .putExtra("NOME_USUARIO", loginResponse.getNome()));
                     finish();

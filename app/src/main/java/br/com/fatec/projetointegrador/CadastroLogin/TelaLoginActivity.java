@@ -61,7 +61,7 @@ public class TelaLoginActivity extends AppCompatActivity {
                                    Response<LoginResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     LoginResponse body = response.body();
-                    session.saveUserId(body.getId().intValue());
+                    session.saveUserId(body.getId().longValue());
                     session.saveUserName(body.getNome());
 
                     Intent intent = new Intent(TelaLoginActivity.this, Home.class);

@@ -3,26 +3,25 @@ package br.com.fatec.projetointegrador.Configuration;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-// SessionManager.java
 public class SessionManager {
-    private static final String PREF_NAME = "app_session";
-    private static final String KEY_USER_ID = "user_id";
+    private static final String PREF_NAME     = "app_session";
+    private static final String KEY_USER_ID   = "user_id";
     private static final String KEY_USER_NAME = "user_name";
     private SharedPreferences prefs;
     private SharedPreferences.Editor editor;
 
     public SessionManager(Context ctx) {
-        prefs = ctx.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+        prefs  = ctx.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
         editor = prefs.edit();
     }
 
-    public void saveUserId(int id) {
-        editor.putInt(KEY_USER_ID, id);
+    public void saveUserId(long id) {
+        editor.putLong(KEY_USER_ID, id);
         editor.apply();
     }
 
-    public int getUserId() {
-        return prefs.getInt(KEY_USER_ID, -1);
+    public long getUserId() {
+        return prefs.getLong(KEY_USER_ID, -1L);
     }
 
     public void saveUserName(String name) {
@@ -43,4 +42,5 @@ public class SessionManager {
         editor.apply();
     }
 }
+
 

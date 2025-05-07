@@ -1,10 +1,8 @@
 package br.com.fatec.projetointegrador.CadastroLogin;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Patterns;
-import android.util.Log;
 import android.widget.Toast;
 import android.widget.TextView;
 
@@ -12,9 +10,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatEditText;
 
-import com.google.gson.Gson;
 
 import br.com.fatec.projetointegrador.Configuration.RetrofitClient;
+import br.com.fatec.projetointegrador.Configuration.SessionManager;
 import br.com.fatec.projetointegrador.Home;
 import br.com.fatec.projetointegrador.R;
 import br.com.fatec.projetointegrador.Retrofit.Api.UsuarioApi;
@@ -25,86 +23,77 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class TelaLoginActivity extends AppCompatActivity {
-
     private AppCompatEditText emailInput, passwordInput;
     private AppCompatButton loginButton;
     private TextView btnGoToRegister;
+    private SessionManager session;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initializeComponents();
+        session = new SessionManager(this);
+        emailInput = findViewById(R.id.editTextUsername);
+        passwordInput = findViewById(R.id.editTextPassword);
+        loginButton = findViewById(R.id.btnEntrar);
+        btnGoToRegister = findViewById(R.id.btnCadastrese);
 
-        loginButton.setOnClickListener(view -> loginUser());
-        btnGoToRegister.setOnClickListener(view -> {
+        loginButton.setOnClickListener(v -> loginUser());
+        btnGoToRegister.setOnClickListener(v -> {
             startActivity(new Intent(this, TelaCadastroActivity.class));
             finish();
         });
     }
 
-    private void initializeComponents() {
-        emailInput = findViewById(R.id.editTextUsername);
-        passwordInput = findViewById(R.id.editTextPassword);
-        loginButton = findViewById(R.id.btnEntrar);
-        btnGoToRegister = findViewById(R.id.btnCadastrese);
-    }
-
     private void loginUser() {
         String email = emailInput.getText().toString().trim();
         String password = passwordInput.getText().toString();
+        if (!validateInputs(email, password)) return;
 
-        if (!validateInputs(email, password)) {
-            return;
-        }
+        LoginRequest req = new LoginRequest(email, password);
+        UsuarioApi api = new RetrofitClient()
+                .getRetrofit()
+                .create(UsuarioApi.class);
 
-        LoginRequest loginRequest = new LoginRequest(email, password);
-        UsuarioApi usuarioApi = new RetrofitClient().getRetrofit().create(UsuarioApi.class);
-
-        usuarioApi.login(loginRequest).enqueue(new Callback<LoginResponse>() {
+        api.login(req).enqueue(new Callback<LoginResponse>() {
             @Override
-            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+            public void onResponse(Call<LoginResponse> call,
+                                   Response<LoginResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
+                    LoginResponse body = response.body();
+                    session.saveUserId(body.getId().intValue());
+                    session.saveUserName(body.getNome());
 
-                    LoginResponse loginResponse = response.body();
-                    Long id = loginResponse.getId();
-
-                    // Salva o ID do usuário logado no SharedPreferences
-                    SharedPreferences sharedPreferences = getSharedPreferences("AppPrefs", MODE_PRIVATE);
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putLong("USER_ID", loginResponse.getId());
-                    editor.putString("USER_NOME", loginResponse.getNome());
-                    editor.putString("USER_DATA_NASCIMENTO", loginResponse.getDataNascimento());
-                    editor.putString("USER_TELEFONE", loginResponse.getTelefone());
-                    editor.apply();
-
-                    startActivity(new Intent(TelaLoginActivity.this, Home.class)
-                            .putExtra("NOME_USUARIO", loginResponse.getNome()));
+                    Intent intent = new Intent(TelaLoginActivity.this, Home.class);
+                    intent.putExtra("NOME_USUARIO", body.getNome());
+                    startActivity(intent);
                     finish();
                 } else {
-                    Toast.makeText(TelaLoginActivity.this, "Email ou senha inválidos!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(TelaLoginActivity.this,
+                            "Email ou senha inválidos!", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
-                Toast.makeText(TelaLoginActivity.this, "Erro: " + t.getMessage(), Toast.LENGTH_SHORT).show();
-                Log.e("TelaLoginActivity", "Erro: " + t.getMessage());
+                Toast.makeText(TelaLoginActivity.this,
+                        "Erro: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-
-        Log.d("TelaLoginActivity", "Enviando login: " + new Gson().toJson(loginRequest));
     }
 
     private boolean validateInputs(String email, String password) {
         if (email.isEmpty() || password.isEmpty()) {
-            Toast.makeText(this, "Preencha todos os campos!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Preencha todos os campos!",
+                    Toast.LENGTH_SHORT).show();
             return false;
         }
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            Toast.makeText(this, "E-mail inválido!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "E-mail inválido!",
+                    Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;
     }
 }
+

@@ -23,9 +23,10 @@ import com.google.gson.Gson;
 import br.com.fatec.projetointegrador.Configuration.RetrofitClient;
 import br.com.fatec.projetointegrador.R;
 import br.com.fatec.projetointegrador.Retrofit.Api.UsuarioApi;
-import br.com.fatec.projetointegrador.Retrofit.Model.Especialidade;
-import br.com.fatec.projetointegrador.Retrofit.Model.Papel;
-import br.com.fatec.projetointegrador.Retrofit.Model.Usuario;
+
+import br.com.fatec.projetointegrador.Retrofit.Model.Usuario.Especialidade;
+import br.com.fatec.projetointegrador.Retrofit.Model.Usuario.Papel;
+import br.com.fatec.projetointegrador.Retrofit.Model.Usuario.Usuario;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

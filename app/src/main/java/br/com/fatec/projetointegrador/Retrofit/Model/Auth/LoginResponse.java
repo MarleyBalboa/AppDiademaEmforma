@@ -1,4 +1,4 @@
-package br.com.fatec.projetointegrador.Retrofit.Model;
+package br.com.fatec.projetointegrador.Retrofit.Model.Auth;
 
 public class LoginResponse {
     private Long id;

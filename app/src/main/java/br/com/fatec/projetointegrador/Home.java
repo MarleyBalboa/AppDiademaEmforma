@@ -2,7 +2,6 @@ package br.com.fatec.projetointegrador;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,7 +16,7 @@ import br.com.fatec.projetointegrador.Buscar.TelaPerfil;
 import br.com.fatec.projetointegrador.CadastroLogin.TelaAgendarActivity;
 import br.com.fatec.projetointegrador.Configuration.SessionManager;
 import br.com.fatec.projetointegrador.Retrofit.Api.UsuarioApi;
-import br.com.fatec.projetointegrador.Retrofit.Model.Usuario;
+import br.com.fatec.projetointegrador.Retrofit.Model.Usuario.Usuario;
 import br.com.fatec.projetointegrador.Configuration.RetrofitClient;
 import retrofit2.Call;
 import retrofit2.Callback;

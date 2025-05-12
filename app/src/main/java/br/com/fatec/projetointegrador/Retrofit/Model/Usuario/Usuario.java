@@ -1,8 +1,6 @@
-package br.com.fatec.projetointegrador.Retrofit.Model;
+package br.com.fatec.projetointegrador.Retrofit.Model.Usuario;
 
 import com.google.gson.annotations.SerializedName;
-
-import java.time.LocalDateTime;
 
 public class Usuario {
 

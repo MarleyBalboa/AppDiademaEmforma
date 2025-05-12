@@ -2,20 +2,12 @@ package br.com.fatec.projetointegrador;
 
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 
-import android.os.Bundle;
-import android.widget.Button;
-
-import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -24,6 +16,7 @@ import java.util.List;
 
 import br.com.fatec.projetointegrador.Adapter.AgendamentoAdapter;
 import br.com.fatec.projetointegrador.Adapter.AgendamentoManager;
+import br.com.fatec.projetointegrador.Retrofit.Model.Agendamento.Agendamento;
 
 public class TelaConsultaActivity extends AppCompatActivity {
 

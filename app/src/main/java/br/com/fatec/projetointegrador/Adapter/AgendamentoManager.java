@@ -3,7 +3,7 @@ package br.com.fatec.projetointegrador.Adapter;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.fatec.projetointegrador.Agendamento;
+import br.com.fatec.projetointegrador.Retrofit.Model.Agendamento.Agendamento;
 
 public class AgendamentoManager {
     private static final List<Agendamento> agendamentos = new ArrayList<>();

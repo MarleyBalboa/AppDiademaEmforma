@@ -1,8 +1,8 @@
 package br.com.fatec.projetointegrador.Retrofit.Api;
 
-import br.com.fatec.projetointegrador.Retrofit.Model.LoginRequest;
-import br.com.fatec.projetointegrador.Retrofit.Model.LoginResponse;
-import br.com.fatec.projetointegrador.Retrofit.Model.Usuario;
+import br.com.fatec.projetointegrador.Retrofit.Model.Auth.LoginRequest;
+import br.com.fatec.projetointegrador.Retrofit.Model.Auth.LoginResponse;
+import br.com.fatec.projetointegrador.Retrofit.Model.Usuario.Usuario;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;

@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-import br.com.fatec.projetointegrador.Agendamento;
+import br.com.fatec.projetointegrador.Retrofit.Model.Agendamento.Agendamento;
 import br.com.fatec.projetointegrador.R;
 
 public class AgendamentoAdapter extends RecyclerView.Adapter<AgendamentoAdapter.AgendamentoViewHolder> {
@@ -33,7 +33,7 @@ public class AgendamentoAdapter extends RecyclerView.Adapter<AgendamentoAdapter.
     public void onBindViewHolder(@NonNull AgendamentoViewHolder holder, int position) {
         Agendamento agendamento = agendamentos.get(position);
         holder.textData.setText("Data: " + agendamento.getData());
-        holder.textHorario.setText("Horário: " + agendamento.getHorario());
+        holder.textHorario.setText("Horário: " + agendamento.getHora());
         holder.textLocal.setText("Local: " + agendamento.getLocal());
         holder.textTipoAgen.setText("Tipo de agendamento: " + agendamento.getTipoAgendamento());
         holder.textProf.setText("Profissional: " + agendamento.getProfissional());

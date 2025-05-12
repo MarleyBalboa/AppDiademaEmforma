@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -23,7 +22,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import br.com.fatec.projetointegrador.Adapter.AgendamentoManager;
-import br.com.fatec.projetointegrador.Agendamento;
+import br.com.fatec.projetointegrador.Retrofit.Model.Agendamento.Agendamento;
 import br.com.fatec.projetointegrador.R;
 import br.com.fatec.projetointegrador.TelaConsultaActivity;
 
@@ -140,11 +139,12 @@ public class TelaAgendarActivity extends AppCompatActivity {
         btnAgendar.setOnClickListener(v -> {
             String data = dataAula.getText().toString();
             String horario = horarioAula.getText().toString();
+            String descricao
             String local = spinnerLocal.getSelectedItem().toString();
             String tipoAgendamento = spinnerTipoAgen.getSelectedItem().toString();
             String profissional = spinnerProf.getSelectedItem().toString();
 
-            Agendamento novoAgendamento = new Agendamento(data, horario, local, tipoAgendamento, profissional);
+            Agendamento novoAgendamento = new Agendamento(data, horario, descricao, local, tipoAgendamento, profissional);
             AgendamentoManager.adicionarAgendamento(novoAgendamento);
 
             Intent intent = new Intent(TelaAgendarActivity.this, TelaConsultaActivity.class);

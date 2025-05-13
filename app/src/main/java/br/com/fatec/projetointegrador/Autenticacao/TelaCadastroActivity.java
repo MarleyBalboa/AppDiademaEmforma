@@ -45,7 +45,7 @@ public class TelaCadastroActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tela_cadastro);
         initializeComponents();
-        registerButton.setOnClickListener(view -> registerUser());
+        registerButton.setOnClickListener(view -> criarUsuario());
     }
 
     private void initializeComponents() {
@@ -69,7 +69,7 @@ public class TelaCadastroActivity extends AppCompatActivity {
         });
     }
 
-    private void registerUser() {
+    private void criarUsuario() {
         String username = usernameInput.getText().toString().trim();
         String email = emailInput.getText().toString().trim();
         String password = passwordInput.getText().toString().trim();

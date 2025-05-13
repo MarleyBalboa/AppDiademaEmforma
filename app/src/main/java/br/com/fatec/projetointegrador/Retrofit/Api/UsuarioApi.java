@@ -2,6 +2,7 @@ package br.com.fatec.projetointegrador.Retrofit.Api;
 
 import br.com.fatec.projetointegrador.Retrofit.Model.Auth.LoginRequest;
 import br.com.fatec.projetointegrador.Retrofit.Model.Auth.LoginResponse;
+import br.com.fatec.projetointegrador.Retrofit.Model.Usuario.ProfissionalDTO;
 import br.com.fatec.projetointegrador.Retrofit.Model.Usuario.Usuario;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -18,6 +19,9 @@ public interface UsuarioApi {
 
     @GET("/usuario/buscar-todos")
     Call<List<Usuario>> buscarTodosUsuarios();
+
+    @GET("/usuario/buscar-todos-profissionais")
+    Call<List<Usuario>> buscarTodosUsuariosProfissionais();
 
     @GET("/usuario/buscar-por-id/{id}")
     Call<Usuario> buscarUsuarioPorId(@Path("id") Long id);

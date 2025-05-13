@@ -50,7 +50,7 @@ public class TelaCadastroActivity extends AppCompatActivity {
 
     private void initializeComponents() {
         usernameInput = findViewById(R.id.editTextTextUsername);
-        emailInput = findViewById(R.id.editTextPassword);
+        emailInput = findViewById(R.id.editTextTextEmail);
         passwordInput = findViewById(R.id.editTextTextPassword);
         confirmPasswordInput = findViewById(R.id.editTextTextConfirmPassword);
         registerButton = findViewById(R.id.btnRegistrar);

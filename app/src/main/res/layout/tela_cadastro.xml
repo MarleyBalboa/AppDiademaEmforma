@@ -128,7 +128,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
         <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/editTextPassword"
+            android:id="@+id/editTextTextEmail"
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:layout_marginStart="32dp"
@@ -156,7 +156,7 @@
             android:textSize="18dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextPassword" />
+            app:layout_constraintTop_toBottomOf="@+id/editTextTextEmail" />
 
         <androidx.appcompat.widget.AppCompatSpinner
             android:id="@+id/spinner_EditRole"

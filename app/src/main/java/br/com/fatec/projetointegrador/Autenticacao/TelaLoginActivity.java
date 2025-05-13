@@ -34,7 +34,7 @@ public class TelaLoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         session = new SessionManager(this);
         emailInput = findViewById(R.id.editTextUsername);
-        passwordInput = findViewById(R.id.editTextPassword);
+        passwordInput = findViewById(R.id.editTextTextEmail);
         loginButton = findViewById(R.id.btnEntrar);
         btnGoToRegister = findViewById(R.id.btnCadastrese);
 

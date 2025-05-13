@@ -1,16 +1,19 @@
 package br.com.fatec.projetointegrador.Usuario;
 
+import static androidx.test.espresso.Espresso.onData;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
+import static androidx.test.espresso.action.ViewActions.replaceText;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.intent.Intents.intended;
 import static androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
+import static org.hamcrest.CoreMatchers.anything;
+
 import androidx.test.core.app.ActivityScenario;
-import androidx.test.espresso.Espresso;
 import androidx.test.espresso.intent.Intents;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
@@ -68,7 +71,7 @@ public class TelaCadastroActivityTest {
     }
 
     @Test
-    public void testCadastroComSucesso() {
+    public void testCadastroUsuarioComumComSucesso() {
         onView(withId(R.id.editTextTextUsername)).perform(typeText("Maria da Silva"), closeSoftKeyboard());
         onView(withId(R.id.editTextTextEmail)).perform(typeText("maria@teste.com"), closeSoftKeyboard());
         onView(withId(R.id.editTextTextPassword)).perform(typeText("senha123"), closeSoftKeyboard());
@@ -83,5 +86,28 @@ public class TelaCadastroActivityTest {
         intended(hasComponent("br.com.fatec.projetointegrador.Autenticacao.TelaCadastroActivity"));
     }
 
+    @Test
+    public void testCadastroUsuarioProfissionalComEspecialidade() {
+        // Preenche campos de texto
+        onView(withId(R.id.editTextTextUsername)).perform(replaceText("Dr. João"), closeSoftKeyboard());
+        onView(withId(R.id.editTextTextEmail)).perform(typeText("joao@teste.com"), closeSoftKeyboard());
+        onView(withId(R.id.editTextTextPassword)).perform(typeText("senha123"), closeSoftKeyboard());
+        onView(withId(R.id.editTextTextConfirmPassword)).perform(typeText("senha123"), closeSoftKeyboard());
+
+        // Seleciona "Profissional" no Spinner de role (assume que está na posição 1)
+        onView(withId(R.id.spinner_EditRole)).perform(click());
+        onData(anything()).atPosition(1).perform(click());
+
+        // Agora o Spinner de especialidade deve aparecer (foi definido com visibility "gone" inicialmente)
+        // Espera ele aparecer e seleciona a especialidade (ex: posição 1)
+        onView(withId(R.id.spinner_EditSpecialty)).perform(click());
+        onData(anything()).atPosition(0).perform(click());
+
+        // Clica em registrar
+        onView(withId(R.id.btnRegistrar)).perform(click());
+
+        // Esperado: redireciona para próxima activity (exemplo: Tela Cadastro)
+        intended(hasComponent("br.com.fatec.projetointegrador.Autenticacao.TelaCadastroActivity"));
+    }
 
 }

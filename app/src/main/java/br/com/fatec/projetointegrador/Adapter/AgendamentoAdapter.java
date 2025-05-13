@@ -14,7 +14,6 @@ import br.com.fatec.projetointegrador.Retrofit.Model.Agendamento.Agendamento;
 import br.com.fatec.projetointegrador.R;
 
 public class AgendamentoAdapter extends RecyclerView.Adapter<AgendamentoAdapter.AgendamentoViewHolder> {
-
     private List<Agendamento> agendamentos;
 
     public AgendamentoAdapter(List<Agendamento> agendamentos) {
@@ -31,12 +30,12 @@ public class AgendamentoAdapter extends RecyclerView.Adapter<AgendamentoAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull AgendamentoViewHolder holder, int position) {
-        Agendamento agendamento = agendamentos.get(position);
-        holder.textData.setText("Data: " + agendamento.getData());
-        holder.textHorario.setText("Horário: " + agendamento.getHora());
-        holder.textLocal.setText("Local: " + agendamento.getLocal());
-        holder.textTipoAgen.setText("Tipo de agendamento: " + agendamento.getTipoAgendamento());
-        holder.textProf.setText("Profissional: " + agendamento.getProfissional());
+        Agendamento a = agendamentos.get(position);
+        holder.textData.setText("Data: " + a.getData());
+        holder.textHorario.setText("Horário: " + a.getHora());
+        holder.textTipoAgen.setText("Tipo: " + a.getTipo().name());
+        holder.textLocal.setText("Local: " + a.getProfissionalResponsavel().getLocalNome());
+        holder.textProf.setText("Profissional: " + a.getProfissionalResponsavel().getUsuario());
     }
 
     @Override
@@ -47,13 +46,13 @@ public class AgendamentoAdapter extends RecyclerView.Adapter<AgendamentoAdapter.
     static class AgendamentoViewHolder extends RecyclerView.ViewHolder {
         TextView textData, textHorario, textLocal, textTipoAgen, textProf;
 
-        public AgendamentoViewHolder(@NonNull View itemView) {
+        AgendamentoViewHolder(@NonNull View itemView) {
             super(itemView);
-            textData = itemView.findViewById(R.id.textData);
-            textHorario = itemView.findViewById(R.id.textHorario);
-            textLocal = itemView.findViewById(R.id.textLocal);
+            textData     = itemView.findViewById(R.id.textData);
+            textHorario  = itemView.findViewById(R.id.textHorario);
             textTipoAgen = itemView.findViewById(R.id.textTipoAgen);
-            textProf = itemView.findViewById(R.id.textProf);
+            textLocal    = itemView.findViewById(R.id.textLocal);
+            textProf     = itemView.findViewById(R.id.textProf);
         }
     }
 }

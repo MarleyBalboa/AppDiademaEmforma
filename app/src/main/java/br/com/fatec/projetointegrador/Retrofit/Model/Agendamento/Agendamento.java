@@ -36,4 +36,57 @@ public class Agendamento {
 
     @SerializedName("dataAtualizacao")
     private String dataAtualizacao;
+
+    public Agendamento(Long id, String data, String hora, String descricao, TipoAgendamento tipo, StatusAgendamento status, UsuarioResumoDTO usuarioCliente, ProfissionalResumoComLocalDTO profissionalResponsavel, String dataCriacao, String dataAtualizacao) {
+        this.id = id;
+        this.data = data;
+        this.hora = hora;
+        this.descricao = descricao;
+        this.tipo = tipo;
+        this.status = status;
+        this.usuarioCliente = usuarioCliente;
+        this.profissionalResponsavel = profissionalResponsavel;
+        this.dataCriacao = dataCriacao;
+        this.dataAtualizacao = dataAtualizacao;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getData() {
+        return data;
+    }
+
+    public String getHora() {
+        return hora;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public TipoAgendamento getTipo() {
+        return tipo;
+    }
+
+    public StatusAgendamento getStatus() {
+        return status;
+    }
+
+    public UsuarioResumoDTO getUsuarioCliente() {
+        return usuarioCliente;
+    }
+
+    public ProfissionalResumoComLocalDTO getProfissionalResponsavel() {
+        return profissionalResponsavel;
+    }
+
+    public String getDataCriacao() {
+        return dataCriacao;
+    }
+
+    public String getDataAtualizacao() {
+        return dataAtualizacao;
+    }
 }

@@ -1,4 +1,4 @@
-package br.com.fatec.projetointegrador.CadastroLogin;
+package br.com.fatec.projetointegrador.Autenticacao;
 
 
 import android.content.Intent;

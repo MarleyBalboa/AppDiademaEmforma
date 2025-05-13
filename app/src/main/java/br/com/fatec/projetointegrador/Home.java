@@ -13,7 +13,6 @@ import br.com.fatec.projetointegrador.Buscar.TelaBuscaNutricionista;
 import br.com.fatec.projetointegrador.Buscar.TelaBuscaParques;
 import br.com.fatec.projetointegrador.Buscar.TelaBuscaSaudeMental;
 import br.com.fatec.projetointegrador.Buscar.TelaPerfil;
-import br.com.fatec.projetointegrador.CadastroLogin.TelaAgendarActivity;
 import br.com.fatec.projetointegrador.Configuration.SessionManager;
 import br.com.fatec.projetointegrador.Retrofit.Api.UsuarioApi;
 import br.com.fatec.projetointegrador.Retrofit.Model.Usuario.Usuario;

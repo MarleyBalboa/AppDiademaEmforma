@@ -35,7 +35,7 @@
             android:name=".GoogleMap.GMapParquesActivity"
             android:exported="false" />
         <activity
-            android:name=".CadastroLogin.TelaInicioBemVindo"
+            android:name=".Autenticacao.TelaInicioBemVindo"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -56,7 +56,7 @@
             android:name=".TelaConsultaActivity"
             android:exported="false" />
         <activity
-            android:name=".CadastroLogin.TelaAgendarActivity"
+            android:name=".TelaAgendarActivity"
             android:exported="false" />
         <activity
             android:name=".Buscar.TelaPerfil"
@@ -65,11 +65,11 @@
             android:name=".Home"
             android:exported="false" />
         <activity
-            android:name=".CadastroLogin.TelaCadastroActivity"
+            android:name=".Autenticacao.TelaCadastroActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".CadastroLogin.TelaLoginActivity"
+            android:name=".Autenticacao.TelaLoginActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
 

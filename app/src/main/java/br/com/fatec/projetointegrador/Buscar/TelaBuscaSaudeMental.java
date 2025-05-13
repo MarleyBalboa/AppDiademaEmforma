@@ -27,7 +27,7 @@ import br.com.fatec.projetointegrador.Adapter.TelaCardLocalizacaoAdapter;
 import br.com.fatec.projetointegrador.Itens.DicasESugestoes;
 import br.com.fatec.projetointegrador.GoogleMap.GMapSaudeMentalActivity;
 import br.com.fatec.projetointegrador.R;
-import br.com.fatec.projetointegrador.CadastroLogin.TelaAgendarActivity;
+import br.com.fatec.projetointegrador.TelaAgendarActivity;
 import br.com.fatec.projetointegrador.Itens.TelaCardLocalizacao;
 
 public class TelaBuscaSaudeMental extends AppCompatActivity {

@@ -30,28 +30,29 @@
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="35dp"
             android:text="AGENDAR"
             android:textAlignment="center"
-            android:textSize="30dp"
+            android:textSize="25dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <!-- LinearLayout para Data e Horário lado a lado -->
         <TextView
             android:id="@+id/id_data"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="12dp"
             android:text="Data e Horário"
             android:textSize="18dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-        <!-- LinearLayout para Data e Horário lado a lado -->
         <LinearLayout
             android:id="@+id/linha_data_hora"
             android:layout_width="0dp"
@@ -149,6 +150,30 @@
             app:layout_constraintEnd_toEndOf="parent" />
 
         <TextView
+            android:id="@+id/id_descricao"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="32dp"
+            android:text="Descrição do Agendamento"
+            android:textSize="18dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spinner_tipoAgen" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/spinner_descricao"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@id/id_descricao"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
             android:id="@+id/id_profissional"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -159,7 +184,7 @@
             android:textSize="18dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spinner_tipoAgen" />
+            app:layout_constraintTop_toBottomOf="@+id/spinner_descricao" />
 
         <Spinner
             android:id="@+id/spinner_profissional"

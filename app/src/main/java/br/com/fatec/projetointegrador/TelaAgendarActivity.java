@@ -49,7 +49,7 @@ public class TelaAgendarActivity extends AppCompatActivity {
     }
 
     private void initializeComponents() {
-        //descricaoInput = findViewById(R.id.editTextDescricao);
+        descricaoInput = findViewById(R.id.spinner_descricao);
         dataInput = findViewById(R.id.data_aula);
         horaInput = findViewById(R.id.horario_aula);
         spinnerLocal = findViewById(R.id.spinner_local);

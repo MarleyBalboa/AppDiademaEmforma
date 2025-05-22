@@ -90,15 +90,11 @@ public class TelaAgendarActivity extends AppCompatActivity {
 
         // Carregar profissionais do backend
         UsuarioApi usuarioApi = new RetrofitClient().getRetrofit().create(UsuarioApi.class);
-        usuarioApi.buscarTodosUsuariosProfissionais().enqueue(new Callback<List<Usuario>>() {
+        usuarioApi.buscarTodosUsuariosProfissionais().enqueue(new Callback<List<ProfissionalDTO>>() {
             @Override
-            public void onResponse(Call<List<Usuario>> call, Response<List<Usuario>> response) {
+            public void onResponse(Call<List<ProfissionalDTO>> call, Response<List<ProfissionalDTO>> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    profissionais.clear();
-                    for (Usuario usuario : response.body()) {
-                        profissionais.add(new ProfissionalDTO(usuario.getId(), usuario.getUsuario(), usuario.getTelefone()));  // Exemplo de adição do telefone
-                    }
-
+                    profissionais = response.body();
                     ArrayAdapter<String> adapter = new ArrayAdapter<>(
                             TelaAgendarActivity.this,
                             android.R.layout.simple_spinner_dropdown_item,
@@ -109,10 +105,11 @@ public class TelaAgendarActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<Usuario>> call, Throwable t) {
+            public void onFailure(Call<List<ProfissionalDTO>> call, Throwable t) {
                 Toast.makeText(TelaAgendarActivity.this, "Erro ao carregar profissionais", Toast.LENGTH_SHORT).show();
             }
         });
+
 
     }
 
@@ -174,11 +171,16 @@ public class TelaAgendarActivity extends AppCompatActivity {
         return nomes;
     }
 
-    private List<String> getNomesProfissionais(List<ProfissionalDTO> profissionais) {
+    private List<String> getNomesProfissionais(List<ProfissionalDTO> lista) {
         List<String> nomes = new ArrayList<>();
-        for (ProfissionalDTO prof : profissionais) {
-            nomes.add(prof.getNome());
+        for (ProfissionalDTO p : lista) {
+            if (p != null && p.getNome() != null) {
+                nomes.add(p.getNome());
+            } else {
+                nomes.add("Profissional desconhecido");
+            }
         }
         return nomes;
     }
+
 }

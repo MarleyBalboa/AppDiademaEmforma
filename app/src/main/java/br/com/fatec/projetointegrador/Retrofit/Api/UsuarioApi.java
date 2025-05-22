@@ -20,8 +20,8 @@ public interface UsuarioApi {
     @GET("/usuario/buscar-todos")
     Call<List<Usuario>> buscarTodosUsuarios();
 
-    @GET("/usuario/buscar-todos-profissionais")
-    Call<List<Usuario>> buscarTodosUsuariosProfissionais();
+    @GET("/usuario/buscar/buscar-todos-profissionais")
+    Call<List<ProfissionalDTO>> buscarTodosUsuariosProfissionais();
 
     @GET("/usuario/buscar-por-id/{id}")
     Call<Usuario> buscarUsuarioPorId(@Path("id") Long id);

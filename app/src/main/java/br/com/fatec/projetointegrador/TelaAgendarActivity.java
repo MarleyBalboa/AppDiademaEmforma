@@ -1,5 +1,7 @@
 package br.com.fatec.projetointegrador;
 
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ArrayAdapter;
@@ -10,6 +12,7 @@ import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatEditText;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import br.com.fatec.projetointegrador.Configuration.RetrofitClient;
@@ -45,6 +48,33 @@ public class TelaAgendarActivity extends AppCompatActivity {
 
         initializeComponents();
         setupSpinners();
+
+        dataInput.setOnClickListener(v -> {
+            Calendar c = Calendar.getInstance();
+            new DatePickerDialog(this,
+                    (view, year, month, day) -> {
+                        String d = String.format("%04d-%02d-%02d", year, month + 1, day);
+                        dataInput.setText(d);
+                    },
+                    c.get(Calendar.YEAR),
+                    c.get(Calendar.MONTH),
+                    c.get(Calendar.DAY_OF_MONTH)
+            ).show();
+        });
+
+        horaInput.setOnClickListener(v -> {
+            Calendar c = Calendar.getInstance();
+            new TimePickerDialog(this,
+                    (view, hour, minute) -> {
+                        String h = String.format("%02d:%02d", hour, minute);
+                        horaInput.setText(h);
+                    },
+                    c.get(Calendar.HOUR_OF_DAY),
+                    c.get(Calendar.MINUTE),
+                    true
+            ).show();
+        });
+
         btnAgendar.setOnClickListener(view -> criarAgendamento());
     }
 
@@ -174,9 +204,14 @@ public class TelaAgendarActivity extends AppCompatActivity {
     private List<String> getNomesProfissionais(List<ProfissionalDTO> lista) {
         List<String> nomes = new ArrayList<>();
         for (ProfissionalDTO p : lista) {
+            if (p.getNome() != null) {
+                nomes.add(p.getNome());
+            }
+            /*
             if (p != null && p.getNome() != null) {
                 nomes.add(p.getNome());
-            } else {
+            } */
+            else {
                 nomes.add("Profissional desconhecido");
             }
         }

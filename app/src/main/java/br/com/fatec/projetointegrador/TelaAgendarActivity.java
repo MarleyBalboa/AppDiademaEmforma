@@ -25,7 +25,6 @@ import br.com.fatec.projetointegrador.Retrofit.Model.Agendamento.StatusAgendamen
 import br.com.fatec.projetointegrador.Retrofit.Model.Agendamento.TipoAgendamento;
 import br.com.fatec.projetointegrador.Retrofit.Model.Local.LocalDTO;
 import br.com.fatec.projetointegrador.Retrofit.Model.Usuario.ProfissionalDTO;
-import br.com.fatec.projetointegrador.Retrofit.Model.Usuario.Usuario;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -204,8 +203,8 @@ public class TelaAgendarActivity extends AppCompatActivity {
     private List<String> getNomesProfissionais(List<ProfissionalDTO> lista) {
         List<String> nomes = new ArrayList<>();
         for (ProfissionalDTO p : lista) {
-            if (p.getNome() != null) {
-                nomes.add(p.getNome());
+            if (p.getUsuario() != null) {
+                nomes.add(p.getUsuario());
             }
             /*
             if (p != null && p.getNome() != null) {

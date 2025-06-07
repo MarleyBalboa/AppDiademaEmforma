@@ -1,7 +1,9 @@
 package br.com.fatec.projetointegrador;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -36,24 +38,35 @@ public class TelaConsultaActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_tela_consulta);
 
-        // Habilitar seta no ActionBar
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
-        ImageView backButton = findViewById(R.id.backButton);
-        backButton.setOnClickListener(view -> finish());
+        ImageView btnVoltar = findViewById(R.id.btnVoltar);
+        btnVoltar.setOnClickListener(view -> finish());
 
-        // Configurar o RecyclerView
         RecyclerView recyclerView = findViewById(R.id.recyclerViewAgendamentos);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        // Recuperar os agendamentos acumulados
-        List<Agendamento> agendamentos = AgendamentoManager.getAgendamentos();
-        AgendamentoAdapter adapter = new AgendamentoAdapter(agendamentos);
+        // Usa o campo da classe, não cria variável local!
+        agendamentos = AgendamentoManager.getAgendamentos();
+
+        adapter = new AgendamentoAdapter(agendamentos);
         recyclerView.setAdapter(adapter);
 
+        // Configura o listener do botão delete
+        adapter.setOnDeleteClickListener(position -> {
+            Agendamento agendamentoParaExcluir = agendamentos.get(position);
+
+            // Remover do gerenciador (banco/dados)
+            AgendamentoManager.removerAgendamento(agendamentoParaExcluir);
+
+            // Remover da lista local e atualizar RecyclerView
+            agendamentos.remove(position);
+            adapter.notifyItemRemoved(position);
+        });
     }
+
 
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
@@ -68,5 +81,14 @@ public class TelaConsultaActivity extends AppCompatActivity {
     public void finish() {
         super.finish();
         overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+            getWindow().setStatusBarColor(getResources().getColor(R.color.laranjaClaro, null));
+        }
     }
 }

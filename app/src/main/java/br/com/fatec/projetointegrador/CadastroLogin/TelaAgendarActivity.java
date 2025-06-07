@@ -2,8 +2,10 @@ package br.com.fatec.projetointegrador.CadastroLogin;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -12,6 +14,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Button;
 import android.widget.AdapterView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -38,16 +41,13 @@ public class TelaAgendarActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_tela_agendar);
 
-        // Habilitar seta no ActionBar
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
-        // Botão Voltar
-        ImageView backButton = findViewById(R.id.backButton);
-        backButton.setOnClickListener(view -> finish());
+        ImageView btnVoltar = findViewById(R.id.btnVoltar);
+        btnVoltar.setOnClickListener(view -> finish());
 
-        // Inicializando os botões
         btnAgendar = findViewById(R.id.btnAgendar);
         btnConsulta = findViewById(R.id.btnConsulta);
 
@@ -57,30 +57,25 @@ public class TelaAgendarActivity extends AppCompatActivity {
         Spinner spinnerTipoAgen = findViewById(R.id.spinner_tipoAgen);
         Spinner spinnerProf = findViewById(R.id.spinner_profissional);
 
-        // Preenchendo Spinner de Locais
         String[] locaisSalvos = {"Sala A - Prédio 1", "Laboratório 3", "Auditório", "Sala 204", "Espaço Maker"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, locaisSalvos);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerLocal.setAdapter(adapter);
 
-        // Preenchendo Spinner de Tipo de Agendamento
         String[] tiposAgendamento = {"Aula prática", "Mentoria", "Plantão de dúvidas"};
         ArrayAdapter<String> tipoAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, tiposAgendamento);
         tipoAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerTipoAgen.setAdapter(tipoAdapter);
 
-        // Mapeando profissionais por tipo
         Map<String, String[]> profissionaisPorTipo = new HashMap<>();
         profissionaisPorTipo.put("Aula prática", new String[]{"Prof. Ana", "Prof. Carlos", "Prof. Júlia"});
         profissionaisPorTipo.put("Mentoria", new String[]{"Prof. Bruno", "Prof. Marina"});
         profissionaisPorTipo.put("Plantão de dúvidas", new String[]{"Prof. Roberto", "Prof. Helena"});
 
-        // Adapter para Spinner de Profissionais
         ArrayAdapter<String> profAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, new ArrayList<>());
         profAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerProf.setAdapter(profAdapter);
 
-        // Atualizar profissionais ao selecionar tipo de agendamento
         spinnerTipoAgen.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, android.view.View view, int position, long id) {
@@ -98,7 +93,6 @@ public class TelaAgendarActivity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent) {}
         });
 
-        // Ao clicar no campo de data
         dataAula.setOnClickListener(v -> {
             final Calendar calendario = Calendar.getInstance();
             int ano = calendario.get(Calendar.YEAR);
@@ -118,7 +112,6 @@ public class TelaAgendarActivity extends AppCompatActivity {
             datePickerDialog.show();
         });
 
-        // Ao clicar no campo de horário
         horarioAula.setOnClickListener(v -> {
             final Calendar calendario = Calendar.getInstance();
             int hora = calendario.get(Calendar.HOUR_OF_DAY);
@@ -136,13 +129,34 @@ public class TelaAgendarActivity extends AppCompatActivity {
             timePickerDialog.show();
         });
 
-        // Botão Agendar
         btnAgendar.setOnClickListener(v -> {
-            String data = dataAula.getText().toString();
-            String horario = horarioAula.getText().toString();
-            String local = spinnerLocal.getSelectedItem().toString();
-            String tipoAgendamento = spinnerTipoAgen.getSelectedItem().toString();
-            String profissional = spinnerProf.getSelectedItem().toString();
+            String data = dataAula.getText().toString().trim();
+            String horario = horarioAula.getText().toString().trim();
+            String local = spinnerLocal.getSelectedItem() != null ? spinnerLocal.getSelectedItem().toString() : "";
+            String tipoAgendamento = spinnerTipoAgen.getSelectedItem() != null ? spinnerTipoAgen.getSelectedItem().toString() : "";
+            String profissional = spinnerProf.getSelectedItem() != null ? spinnerProf.getSelectedItem().toString() : "";
+
+            // Validação dos campos obrigatórios
+            if (data.isEmpty()) {
+                Toast.makeText(this, "Por favor, selecione a data.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (horario.isEmpty()) {
+                Toast.makeText(this, "Por favor, selecione o horário.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (local.isEmpty()) {
+                Toast.makeText(this, "Por favor, selecione o local.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (tipoAgendamento.isEmpty()) {
+                Toast.makeText(this, "Por favor, selecione o tipo de agendamento.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (profissional.isEmpty()) {
+                Toast.makeText(this, "Por favor, selecione o profissional.", Toast.LENGTH_SHORT).show();
+                return;
+            }
 
             Agendamento novoAgendamento = new Agendamento(data, horario, local, tipoAgendamento, profissional);
             AgendamentoManager.adicionarAgendamento(novoAgendamento);
@@ -151,7 +165,6 @@ public class TelaAgendarActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        // Botão Consultar
         btnConsulta.setOnClickListener(v -> {
             String data = dataAula.getText().toString();
             String horario = horarioAula.getText().toString();
@@ -182,5 +195,14 @@ public class TelaAgendarActivity extends AppCompatActivity {
     public void finish() {
         super.finish();
         overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+            getWindow().setStatusBarColor(getResources().getColor(R.color.laranjaClaro, null));
+        }
     }
 }

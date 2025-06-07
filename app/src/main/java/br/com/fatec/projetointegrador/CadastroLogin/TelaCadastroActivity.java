@@ -27,7 +27,7 @@ public class TelaCadastroActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         // Define o layout da Activity
-        setContentView(R.layout.tela_cadastro);
+        setContentView(R.layout.activity_tela_cadastro);
 
         // Inicializa os elementos da interface
         usernameInput = findViewById(R.id.editTextText3);

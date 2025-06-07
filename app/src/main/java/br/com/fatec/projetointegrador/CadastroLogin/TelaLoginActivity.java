@@ -22,7 +22,7 @@ public class TelaLoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_tela_login);
 
         // Inicializando os elementos da interface
         editTextText3 = findViewById(R.id.editTextText3);

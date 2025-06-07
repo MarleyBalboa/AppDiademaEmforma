@@ -57,9 +57,6 @@
             android:name=".CadastroLogin.TelaAgendarActivity"
             android:exported="false" />
         <activity
-            android:name=".Buscar.TelaPerfil"
-            android:exported="false" />
-        <activity
             android:name=".Home"
             android:exported="false" />
         <activity

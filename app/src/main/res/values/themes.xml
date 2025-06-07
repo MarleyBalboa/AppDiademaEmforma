@@ -1,10 +1,8 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.ProjetoIntegrador" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
+    <style name="Base.Theme.ProjetoIntegrador" parent="Theme.Material3.Light.NoActionBar">
         <item name="colorPrimary">@color/laranjaClaro</item>
         <item name="colorAccent">@color/colorAccent</item>
-
+        <item name="android:windowBackground">@color/white</item>
     </style>
 
     <style name="Theme.ProjetoIntegrador" parent="Base.Theme.ProjetoIntegrador" />

@@ -12,8 +12,11 @@ public class AgendamentoManager {
         agendamentos.add(agendamento);
     }
 
+    public static void removerAgendamento(Agendamento agendamento) {
+        agendamentos.remove(agendamento);
+    }
+
     public static List<Agendamento> getAgendamentos() {
         return new ArrayList<>(agendamentos);
     }
 }
-

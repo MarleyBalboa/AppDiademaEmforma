@@ -1,5 +1,7 @@
 package br.com.fatec.projetointegrador.Retrofit.Api;
 
+import java.util.List;
+
 import br.com.fatec.projetointegrador.Retrofit.Model.Agendamento.Agendamento;
 import br.com.fatec.projetointegrador.Retrofit.Model.Agendamento.AgendamentoRequestDTO;
 import br.com.fatec.projetointegrador.Retrofit.Model.Agendamento.AgendamentoResponseDTO;
@@ -16,4 +18,7 @@ public interface AgendamentoApi {
 
     @POST("/agendamento/criar")
     Call<AgendamentoResponseDTO> criarAgendamento(@Body AgendamentoRequestDTO agendamento);
+
+    @GET("/agendamento/buscar")
+    Call<List<Agendamento>> buscarTodosAgendamentos();
 }

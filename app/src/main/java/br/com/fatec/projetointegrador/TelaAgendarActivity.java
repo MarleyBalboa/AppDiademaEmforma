@@ -141,6 +141,9 @@ public class TelaAgendarActivity extends AppCompatActivity {
 
 
     }
+    public void btnConsulta(android.view.View view) {
+        startActivity(new android.content.Intent(this, TelaConsultaActivity.class));
+    }
 
     private void criarAgendamento() {
         String dataAula = dataInput.getText().toString().trim();

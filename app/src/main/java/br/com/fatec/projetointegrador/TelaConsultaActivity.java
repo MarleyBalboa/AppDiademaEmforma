@@ -3,6 +3,7 @@ package br.com.fatec.projetointegrador;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -16,11 +17,16 @@ import java.util.List;
 
 import br.com.fatec.projetointegrador.Adapter.AgendamentoAdapter;
 import br.com.fatec.projetointegrador.Adapter.AgendamentoManager;
+import br.com.fatec.projetointegrador.Configuration.RetrofitClient;
+import br.com.fatec.projetointegrador.Retrofit.Api.AgendamentoApi;
 import br.com.fatec.projetointegrador.Retrofit.Model.Agendamento.Agendamento;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class TelaConsultaActivity extends AppCompatActivity {
 
-    private List<Agendamento> agendamentos = new ArrayList<>();
+    private RecyclerView recyclerView;
     private AgendamentoAdapter adapter;
 
     @Override
@@ -29,7 +35,6 @@ public class TelaConsultaActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_tela_consulta);
 
-        // Habilitar seta no ActionBar
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
@@ -37,20 +42,36 @@ public class TelaConsultaActivity extends AppCompatActivity {
         ImageView backButton = findViewById(R.id.backButton);
         backButton.setOnClickListener(view -> finish());
 
-        // Configurar o RecyclerView
-        RecyclerView recyclerView = findViewById(R.id.recyclerViewAgendamentos);
+        recyclerView = findViewById(R.id.recyclerViewAgendamentos);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        // Recuperar os agendamentos acumulados
-        List<Agendamento> agendamentos = AgendamentoManager.getAgendamentos();
-        AgendamentoAdapter adapter = new AgendamentoAdapter(agendamentos);
-        recyclerView.setAdapter(adapter);
-
+        carregarAgendamentos();
     }
 
+    private void carregarAgendamentos() {
+        AgendamentoApi api = new RetrofitClient().getRetrofit().create(AgendamentoApi.class);
+        api.buscarTodosAgendamentos().enqueue(new Callback<List<Agendamento>>() {
+            @Override
+            public void onResponse(Call<List<Agendamento>> call, Response<List<Agendamento>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    List<Agendamento> agendamentos = response.body();
+                    adapter = new AgendamentoAdapter(agendamentos);
+                    recyclerView.setAdapter(adapter);
+                } else {
+                    Toast.makeText(TelaConsultaActivity.this, "Erro ao carregar agendamentos", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Agendamento>> call, Throwable t) {
+                Toast.makeText(TelaConsultaActivity.this, "Falha na requisição: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            // Voltar para a tela anterior
             finish();
             return true;
         }

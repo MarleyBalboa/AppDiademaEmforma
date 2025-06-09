@@ -24,7 +24,10 @@ public class AgendamentoRequestDTO {
     @SerializedName("profissionalResponsavelId")
     private Long profissionalResponsavelId;
 
-    public AgendamentoRequestDTO(String data, String hora, String descricao, String tipo, String status, Long usuarioClienteId, Long profissionalResponsavelId) {
+    @SerializedName("localId")
+    private Long localId;
+
+    public AgendamentoRequestDTO(String data, String hora, String descricao, String tipo, String status, Long usuarioClienteId, Long profissionalResponsavelId, Long localId) {
         this.data = data;
         this.hora = hora;
         this.descricao = descricao;
@@ -32,6 +35,7 @@ public class AgendamentoRequestDTO {
         this.status = status;
         this.usuarioClienteId = usuarioClienteId;
         this.profissionalResponsavelId = profissionalResponsavelId;
+        this.localId = localId;
     }
 
     public String getData() {
@@ -88,5 +92,13 @@ public class AgendamentoRequestDTO {
 
     public void setProfissionalResponsavelId(Long profissionalResponsavelId) {
         this.profissionalResponsavelId = profissionalResponsavelId;
+    }
+
+    public Long getLocalId() {
+        return localId;
+    }
+
+    public void setLocalId(Long localId) {
+        this.localId = localId;
     }
 }

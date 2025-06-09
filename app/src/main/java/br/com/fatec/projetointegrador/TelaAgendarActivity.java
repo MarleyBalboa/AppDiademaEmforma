@@ -16,6 +16,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import br.com.fatec.projetointegrador.Configuration.RetrofitClient;
+import br.com.fatec.projetointegrador.Configuration.SessionManager;
 import br.com.fatec.projetointegrador.Retrofit.Api.AgendamentoApi;
 import br.com.fatec.projetointegrador.Retrofit.Api.LocalApi;
 import br.com.fatec.projetointegrador.Retrofit.Api.UsuarioApi;
@@ -33,6 +34,7 @@ import android.widget.Spinner;
 
 public class TelaAgendarActivity extends AppCompatActivity {
 
+    private SessionManager session;
     private AppCompatEditText descricaoInput, dataInput, horaInput;
     private Spinner spinnerLocal, spinnerTipo, spinnerProfissional;
     private AppCompatButton btnAgendar;
@@ -45,6 +47,7 @@ public class TelaAgendarActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela_agendar);
 
+        session = new SessionManager(this);
         initializeComponents();
         setupSpinners();
 
@@ -150,28 +153,34 @@ public class TelaAgendarActivity extends AppCompatActivity {
         String horaAula = horaInput.getText().toString().trim();
         String descricao = descricaoInput.getText().toString().trim();
 
-        TipoAgendamento tipo = (TipoAgendamento) spinnerTipo.getSelectedItem();
+        Long localId = locais.get(spinnerLocal.getSelectedItemPosition()).getId();
         Long profissionalId = profissionais.get(spinnerProfissional.getSelectedItemPosition()).getId();
-
-        // Supondo que você tenha o ID do usuário cliente armazenado
-        Long usuarioClienteId = 1L;
+        long usuarioClienteId = session.getUserId();
+        if (usuarioClienteId == -1L) {
+            Toast.makeText(this, "Usuário não está logado.", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         AgendamentoRequestDTO agendamento = new AgendamentoRequestDTO(
                 dataAula,
                 horaAula,
                 descricao,
-                tipo.name(),
+                ((TipoAgendamento) spinnerTipo.getSelectedItem()).name(),
                 StatusAgendamento.AGUARDANDO_CONFIRMACAO.name(),
+                usuarioClienteId,
                 profissionalId,
-                usuarioClienteId
+                localId
         );
 
-        AgendamentoApi agendamentoApi = new RetrofitClient().getRetrofit().create(AgendamentoApi.class);
-        agendamentoApi.criarAgendamento(agendamento).enqueue(new Callback<AgendamentoResponseDTO>() {
+        AgendamentoApi api = new RetrofitClient()
+                .getRetrofit()
+                .create(AgendamentoApi.class);
+
+        api.criarAgendamento(agendamento).enqueue(new Callback<AgendamentoResponseDTO>() {
             @Override
-            public void onResponse(Call<AgendamentoResponseDTO> call, Response<AgendamentoResponseDTO> response) {
-                if (response.isSuccessful()) {
-                    Toast.makeText(TelaAgendarActivity.this, "Agendamento criado com sucesso!", Toast.LENGTH_SHORT).show();
+            public void onResponse(Call<AgendamentoResponseDTO> call, Response<AgendamentoResponseDTO> r) {
+                if (r.isSuccessful()) {
+                    Toast.makeText(TelaAgendarActivity.this, "Agendamento criado!", Toast.LENGTH_SHORT).show();
                     clearFields();
                 } else {
                     Toast.makeText(TelaAgendarActivity.this, "Erro ao criar agendamento", Toast.LENGTH_SHORT).show();
@@ -179,12 +188,12 @@ public class TelaAgendarActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<AgendamentoResponseDTO> call, Throwable t) { // <-- tipo corrigido aqui
-                Toast.makeText(TelaAgendarActivity.this, "Falha na requisição: " + t.getMessage(), Toast.LENGTH_SHORT).show();
-                Log.e("TelaAgendamento", "Erro: " + t.getMessage());
+            public void onFailure(Call<AgendamentoResponseDTO> call, Throwable t) {
+                Toast.makeText(TelaAgendarActivity.this, "Falha: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
+
 
     private void clearFields() {
         descricaoInput.setText("");

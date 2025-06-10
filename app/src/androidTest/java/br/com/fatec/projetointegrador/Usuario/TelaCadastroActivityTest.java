@@ -10,6 +10,7 @@ import static androidx.test.espresso.intent.Intents.intended;
 import static androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
+import static androidx.test.espresso.action.ViewActions.scrollTo;
 
 import static org.hamcrest.CoreMatchers.anything;
 
@@ -49,9 +50,10 @@ public class TelaCadastroActivityTest {
     @Test
     public void testSenhaDiferenteDaConfirmacao() {
         onView(withId(R.id.editTextTextUsername)).perform(typeText("Gabriel"));
-        onView(withId(R.id.editTextTextEmail)).perform(typeText("senha123"));
+        onView(withId(R.id.editTextTextEmail)).perform(typeText("gabriel@teste.com"));
         onView(withId(R.id.editTextTextPassword)).perform(typeText("senha123"));
-        onView(withId(R.id.editTextTextConfirmPassword)).perform(typeText("senha321"));
+        onView(withId(R.id.editTextTextConfirmPassword)).perform(scrollTo(), typeText("senha321"), closeSoftKeyboard());
+
         onView(withId(R.id.btnRegistrar)).perform(click());
         // Toast de senhas diferentes deve aparecer (mesmo ponto do anterior: precisa capturar via ToastMatcher)
     }
@@ -60,7 +62,6 @@ public class TelaCadastroActivityTest {
     public void testEmailInvalido() {
         onView(withId(R.id.editTextTextUsername)).perform(typeText("Gabriel"), closeSoftKeyboard());
         onView(withId(R.id.editTextTextEmail)).perform(typeText("gabrielsemarroba"), closeSoftKeyboard());
-        onView(withId(R.id.editTextTextEmail)).perform(typeText("senha123"), closeSoftKeyboard());
         onView(withId(R.id.editTextTextPassword)).perform(typeText("senha123"), closeSoftKeyboard());
         onView(withId(R.id.editTextTextConfirmPassword)).perform(typeText("senha123"), closeSoftKeyboard());
 

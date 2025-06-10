@@ -7,6 +7,7 @@ import br.com.fatec.projetointegrador.Retrofit.Model.Agendamento.AgendamentoRequ
 import br.com.fatec.projetointegrador.Retrofit.Model.Agendamento.AgendamentoResponseDTO;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
@@ -21,4 +22,8 @@ public interface AgendamentoApi {
 
     @GET("/agendamento/buscar")
     Call<List<Agendamento>> buscarTodosAgendamentos();
+
+    @DELETE("/agendamento/deletar/{id}")
+    Call<Void> deletarAgendamento(@Path("id") Long id);
+
 }

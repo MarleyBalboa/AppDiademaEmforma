@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="MyAlertDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <!-- Aqui você controla o estilo padrão dos botões -->
+        <item name="android:buttonBarPositiveButtonStyle">@style/MyAlertDialogButton</item>
+        <item name="android:buttonBarNegativeButtonStyle">@style/MyAlertDialogButton</item>
+        <item name="android:buttonBarNeutralButtonStyle">@style/MyAlertDialogButton</item>
+    </style>
+
+    <style name="MyAlertDialogButton" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
+        <item name="android:textColor">#333333</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+</resources>

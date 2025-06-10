@@ -16,6 +16,16 @@ import br.com.fatec.projetointegrador.R;
 public class AgendamentoAdapter extends RecyclerView.Adapter<AgendamentoAdapter.AgendamentoViewHolder> {
     private List<Agendamento> agendamentos;
 
+    public interface OnAgendamentoLongClickListener {
+        void onLongClick(Agendamento agendamento);
+    }
+
+    private OnAgendamentoLongClickListener longClickListener;
+
+    public void setOnAgendamentoLongClickListener(OnAgendamentoLongClickListener listener) {
+        this.longClickListener = listener;
+    }
+
     public AgendamentoAdapter(List<Agendamento> agendamentos) {
         this.agendamentos = agendamentos;
     }
@@ -36,6 +46,27 @@ public class AgendamentoAdapter extends RecyclerView.Adapter<AgendamentoAdapter.
         holder.textTipoAgen.setText("Tipo: " + a.getTipo().name());
         holder.textLocal.setText("Local: " + a.getProfissionalResponsavel().getLocalNome());
         holder.textProf.setText("Profissional: " + a.getProfissionalResponsavel().getUsuario());
+
+        holder.itemView.setOnLongClickListener(view -> {
+            if (longClickListener != null) {
+                longClickListener.onLongClick(a);
+            }
+            return true;
+        });
+    }
+
+    public void removeById(Long id) {
+        int idx = -1;
+        for (int i = 0; i < agendamentos.size(); i++) {
+            if (agendamentos.get(i).getId().equals(id)) {
+                idx = i;
+                break;
+            }
+        }
+        if (idx != -1) {
+            agendamentos.remove(idx);
+            notifyItemRemoved(idx);
+        }
     }
 
     @Override
